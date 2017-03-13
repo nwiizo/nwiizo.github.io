@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Shuya Motouchi</title>
+  </head>
+
+ 
+
+ 
+ <!-- ========== HEADER SECTION ========== -->
+ <section id="home" name="home"></section>
+ <div id="headerwrap">
+  <div class="container">
+   <div class="logo">
+   </div>
+   <br>
+   <div class="row">
+    <h1>Welcome to my homepage.</h1>
+    <br>
+    <h3>My name is Shuya Motouchi</h3>
+    <br>
+    <br>
+    <div class="col-lg-6 col-lg-offset-3">
+    </div>
+   </div>
+  </div><!-- /container -->
+ </div><!-- /headerwrap -->
+ 
+ 
+ 
+ <!-- ========== ABOUT SECTION ========== -->
+ <section id="about" name="about"></section>
+ <div id="f">
+  <div class="container">
+   <div class="row">
+    <h3>ABOUT Member</h3>
+    <p class="centered"><i class="icon icon-circle"></i><i class="icon icon-circle"></i><i class="icon icon-circle"></i></p>
+    
+    <!-- INTRO INFORMATIO-->
+    <div class="col-lg-6 col-lg-offset-3">
+     
+        <li>
+          <a href="https://twitter.com/nwiizo">Twitter</a>
+        </li>      
+        <li>
+          <a href="https://github.com/nwiizo">Github</a>
+        </li>      
+        <li>
+          <a href="https://www.amazon.co.jp/registry/wishlist/1R5ZE9A1TGDZJ">Wishlist</a>
+    </div>
+   </div>
+  </div><!-- /container -->
+ </div><!-- /f -->
+ 
+</body>
