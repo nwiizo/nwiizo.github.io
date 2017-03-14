@@ -1,6 +1,5 @@
-# Welcome to my pages
+# Welcome to my page
 Shuya Motouchi is a Programmer,Network Engineer and IT Infrastructure Engineer.
-
 # Abaut Me
 [Twitter](https://twitter.com/nwiizo)
 [Github](https://github.com/nwiizo)
