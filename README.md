@@ -1,6 +1,6 @@
 # Welcome to my page
-Shuya Motouchi is Programmer,Network Engineer  
-and IT Infrastructure Engineer.
+# Bio
+Shuya Motouchi is Programmer,Network Engineer and IT Infrastructure Engineer.
 # About Me
 [Twitter](https://twitter.com/nwiizo)
 [Github](https://github.com/nwiizo)
