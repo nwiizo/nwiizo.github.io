@@ -1,5 +1,4 @@
 # Welcome to my page
-# Bio
 Shuya Motouchi is Programmer,Network Engineer and IT Infrastructure Engineer.
 # About Me
 [Twitter](https://twitter.com/nwiizo)
