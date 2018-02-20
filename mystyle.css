@@ -6,6 +6,8 @@ h1 {
     margin-left: 20px;
 }
 
+background-image: url("./images/background.jpg")
+
 ul li.line {
   position: relative;
   list-style-type:none !important;
