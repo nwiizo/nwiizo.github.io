@@ -5,6 +5,12 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-color: #464646;
+    font-weight: bold;
+    background: #91b5fb;
+    padding: 7px 10px 10px 10px;
+    text-decoration: none;
+    color: #FFF;
+    transition: .4s;
 }
 
 h1 {
