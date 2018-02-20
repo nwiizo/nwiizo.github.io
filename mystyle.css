@@ -1,9 +1,10 @@
 <STYLE type="text/css">
 <!--
 body {
-    background-image: url("./images/background.jpg")
+    background-image: url("./images/background.jpg");
+    background-attachment: fixed;
     background-position: center;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 h1 {
