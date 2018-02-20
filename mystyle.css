@@ -1,9 +1,12 @@
-body {
+background {
     background-image: url("./images/background.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+}
+
+body {
     background-color: #464646;
     font-weight: bold;
     background: #91b5fb;
