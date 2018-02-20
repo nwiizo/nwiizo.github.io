@@ -1,3 +1,5 @@
+<STYLE type="text/css">
+<!--
 body {
     background-image: url("./images/background.jpg")
     background-attachment: fixed;
@@ -27,3 +29,5 @@ ul li.line::after {
   height: 2px;
   background-color: #b08559;
 }
+-->
+</STYLE>
