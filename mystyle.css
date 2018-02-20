@@ -38,26 +38,3 @@ body {
 }
 
 
-h1 {
-    color: navy;
-    margin-left: 20px;
-}
-
-
-ul li.line {
-  position: relative;
-  list-style-type:none !important;
-  padding:0 0 0 0.4rem; 
-}
-
-ul li.line::after {
-  position: absolute; 
-  display: block;
-  content: '';
-  top: 0.7rem;
-  left: -1rem;
-  width: 0.5rem;
-  height: 2px;
-  background-color: #b08559;
-}
-
