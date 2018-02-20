@@ -1,6 +1,10 @@
-<STYLE type="text/css">
 body {
     background-image: url("./images/background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
 }
 
 h1 {
@@ -25,4 +29,4 @@ ul li.line::after {
   height: 2px;
   background-color: #b08559;
 }
-</STYLE>
+
