@@ -1,5 +1,5 @@
 # nwiizo.github.io
- Shuya Motouchi is Programmer,Network Engineer and IT Infrastructure Engineer.
+ Shuya Motouchi is System Engineer,System Programmer,Network Engineer and System Infrastructure Engineer.
 # About me 
  [Twitter](https://twitter.com/nwiizo)  
  [Github](https://github.com/nwiizo)  
