@@ -1,4 +1,4 @@
-Shuya Motouchi is System Engineer,System Programmer,Network Engineer and System Infrastructure Engineer.
+Shuya Motouchi is System Engineer,System Programmer,Network Engineer,Researcher and System Infrastructure Engineer.
 # Links 
  [Twitter](https://twitter.com/nwiizo)  
  [Github](https://github.com/nwiizo)  
