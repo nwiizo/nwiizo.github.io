@@ -1,5 +1,5 @@
 # Profile
-Shuya Motouchi is System Engineer,System Programmer,Network Engineer,Researcher and System Infrastructure Engineer. 
+Shuya Motouchi is Software Engineer,System Engineer,System Programmer,Network Engineer,Researcher and System Infrastructure Engineer. 
 # Programming Language
 Rust / Python / bash / Golang / C / C++
 # Links 
