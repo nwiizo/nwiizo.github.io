@@ -1,5 +1,6 @@
 # Profile
-Shuya Motouchi is Software Engineer,System Engineer,System Programmer,Network Engineer,Researcher and System Infrastructure Engineer. 
+My name is Shuya Motouchi.I'm a software developer living in Tokyo. 
+I like to develop and operation,optimize systems.
 # Programming Language
 Rust / Python / bash / Golang / C / C++
 # Links 
