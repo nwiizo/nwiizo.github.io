@@ -2,7 +2,9 @@
 My name is Shuya Motouchi.I'm a software developer and Evangelist living in Tokyo.   
 I like to develop and operation,optimize systems. [@GMO Internet, Inc.](https://www.gmo.jp)
 
-[![nwiizo's github stats](https://github-readme-stats.vercel.app/api?username=nwiizo)](https://github.com/anuraghazra/github-readme-stats)
+[![nwiizo's github stats](https://github-readme-stats.vercel.app/api?username=nwiizo&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)](https://github.com/anuraghazra/github-readme-stats)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=nwiizo&layout=compact&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)](https://github.com/anuraghazra/github-readme-stats)
 # Programming Language
 Rust / Python / bash / Golang / C / C++
 # Links 
