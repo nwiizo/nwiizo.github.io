@@ -1,5 +1,5 @@
 # Profile
-My name is Shuya Motouchi.I'm a software developer and Evangelist living in Tokyo.   
+My name is Shuya Motouchi.I'm a software developer　living in Tokyo.   
 I like to develop and operation,optimize systems. [@3-shake Inc. ](https://3-shake.com/)
 
 # Programming Language
