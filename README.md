@@ -3,7 +3,7 @@ My name is Shuya Motouchi.I'm a software developer　living in Tokyo.
 I like to develop and operation,optimize systems. [@3-shake Inc. ](https://3-shake.com/)
 
 # Programming Language
-Golang / Python / bash / C / C++
+Golang / Python / bash 
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=nwiizo&hide=html)
 
