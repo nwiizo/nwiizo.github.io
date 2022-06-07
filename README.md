@@ -1,6 +1,7 @@
 # Profile
-My name is Shuya Motouchi.I'm a software developer living in Tokyo.   
-I like to develop and operation,optimize systems. [@3-shake Inc. ](https://3-shake.com/)
+My Name is Shuya Motouchi.I'm Software Developer [@3-shake Inc.](https://3-shake.com/).   
+I like to develop and operation,optimize systems.  
+Technical advisors of several other companies.
 
 # Programming
 Golang / Shell Script / etc 
