@@ -1,5 +1,5 @@
 # Profile
-My Name is Shuya Motouchi.I'm Software Developer [@3-shake Inc.](https://3-shake.com/).   
+My Name is Shuya Motouchi.I'm Software Developer [@3-shake Inc.](https://3-shake.com/)   
 I like to develop and operation,optimize systems.  
 Technical advisors of several other companies.
 
