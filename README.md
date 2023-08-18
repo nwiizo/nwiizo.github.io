@@ -1,7 +1,13 @@
 # Profile
 
-| <img src="https://github.com/nwiizo.png" alt="Github Icon" width="150"> | My Name is Shuya Motouchi. I'm Software Developer [@3-shake Inc.](https://3-shake.com/) <br> I like to develop and operation, optimize systems. <br> Technical advisors of several other companies. |
-|:---|:---|
+<div style="display: flex; align-items: start;">
+    <img src="https://github.com/nwiizo.png" alt="Github Icon" width="150" style="margin-right: 20px;">
+    <div style="text-align: left;">
+        My Name is Shuya Motouchi. I'm Software Developer <a href="https://3-shake.com/">@3-shake Inc.</a>   
+        I like to develop and operation, optimize systems.  
+        Technical advisors of several other companies.
+    </div>
+</div>
 
 # Programming
 Golang / Shell Script / Terraform / Ansible / etc 
