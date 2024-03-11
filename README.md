@@ -6,8 +6,8 @@
     </a>
     <div style="text-align: left;">
         <strong>My Name is Shuya Motouchi.</strong><br>
-        I'm a Software Developer at <a href="https://3-shake.com/" style="color: #0077cc; text-decoration: none;">@3-shake Inc.</a><br>   
-        I like to develop, operate, and optimize systems.<br>  
+        I'm a Software Developer at <a href="https://3-shake.com/" style="color: #0077cc; text-decoration: none;">@3-shake Inc.</a> and a passionate Gravure Digger.<br>
+        I like to develop, operate, and optimize systems, and I'm also a martial arts enthusiast.<br>
         Technical advisor for several other companies.
     </div>
 </div>
