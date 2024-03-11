@@ -8,7 +8,7 @@
         <strong>My Name is nwiizo a.k.a. Shuya Motouchi.</strong><br>
         I'm a Software Developer at <a href="https://3-shake.com/" style="color: #0077cc; text-decoration: none;">@3-shake Inc.</a> and a passionate Gravure Digger.<br>
         I like to develop, operate, and optimize systems, and I'm also a martial arts enthusiast.<br>
-        Technical advisor for several other companies.
+        Technical advisor for several other companies.<br>
     </div>
 
 ## Programming
