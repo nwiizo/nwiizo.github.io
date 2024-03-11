@@ -10,6 +10,7 @@
         I like to develop, operate, and optimize systems, and I'm also a martial arts enthusiast.<br>
         Technical advisor for several other companies.<br>
     </div>
+</div>
 
 ## Programming
 Golang / Shell Script / Terraform / Ansible / etc 
