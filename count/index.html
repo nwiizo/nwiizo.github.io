@@ -11,19 +11,16 @@
   <div class="container">
     <h2>文字数カウンター</h2>
     <div class="instructions">
-      以下のテキストエリアに文章を入力し、「カウント」ボタンをクリックすると、文字数、行数、段落数がカウントされます。
+      以下のテキストエリアに文章を入力すると、文字数、行数、段落数がカウントされます。
     </div>
     <textarea id="input" placeholder="ここに文章を入力してください..."></textarea>
-    <div class="button-container">
-      <button id="countButton">カウント</button>
-      <button id="resetButton">リセット</button>
-    </div>
     <div class="output">
-      <div>文字数（スペース込み）: <span id="countWithSpaces" class="copyable">0</span></div>
-      <div>文字数（スペース除く）: <span id="countWithoutSpaces" class="copyable">0</span></div>
-      <div>行数: <span id="lineCount" class="copyable">0</span></div>
-      <div>段落数: <span id="paragraphCount" class="copyable">0</span></div>
+      <div>文字数（スペース込み）: <span id="countWithSpaces">0</span></div>
+      <div>文字数（スペース除く）: <span id="countWithoutSpaces">0</span></div>
+      <div>行数: <span id="lineCount">0</span></div>
+      <div>段落数: <span id="paragraphCount">0</span></div>
     </div>
+    <button id="resetButton">リセット</button>
   </div>
   <script src="main.js"></script>
 </body>
