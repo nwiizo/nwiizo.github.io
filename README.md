@@ -1,19 +1,28 @@
 <div align="center">
-  <a href="https://github.com/nwiizo">
-<img src="https://github.com/nwiizo.png" width="200" style="transition: all 15s cubic-bezier(0.34, 1.56, 0.64, 1);" 
+<a href="https://github.com/nwiizo">
+<img src="https://github.com/nwiizo.png" width="200" style="transition: all 0.5s ease-in-out;" 
 onmouseover="
-let t1, t2, t3, t4;
+this.style.transition='all 15s cubic-bezier(0.34, 1.56, 0.64, 1)';
 this.style.transform='scale(1.1) rotate(0deg)';
-t1 = setTimeout(() => { this.style.transform='scale(5) rotate(360deg)' }, 2000);
-t2 = setTimeout(() => { this.style.transform='scale(20) rotate(1080deg)' }, 5000);
-t3 = setTimeout(() => { this.style.transform='scale(100) rotate(3600deg) skew(25deg)' }, 8000);
-t4 = setTimeout(() => { this.style.transform='scale(200) rotate(7200deg) skew(45deg)' }, 12000);
-this.timeouts = [t1, t2, t3, t4];"
+this.timeout1 = setTimeout(() => { 
+    if(this.matches(':hover')) this.style.transform='scale(5) rotate(360deg)';
+}, 2000);
+this.timeout2 = setTimeout(() => {
+    if(this.matches(':hover')) this.style.transform='scale(20) rotate(1080deg)';
+}, 5000);
+this.timeout3 = setTimeout(() => {
+    if(this.matches(':hover')) this.style.transform='scale(100) rotate(3600deg) skew(25deg)';
+}, 8000);
+this.timeout4 = setTimeout(() => {
+    if(this.matches(':hover')) this.style.transform='scale(200) rotate(7200deg) skew(45deg)';
+}, 12000);"
 onmouseout="
-if (this.timeouts) {
-    this.timeouts.forEach(clearTimeout);
-}
-this.style.transform='scale(1) rotate(0deg) skew(0deg)'" />
+clearTimeout(this.timeout1);
+clearTimeout(this.timeout2);
+clearTimeout(this.timeout3);
+clearTimeout(this.timeout4);
+this.style.transition='all 0.5s ease-in-out';
+this.style.transform='scale(1) rotate(0deg) skew(0deg)';" />
 </a>
   
   <h3>nwiizo a.k.a. Shuya Motouchi</h3>
