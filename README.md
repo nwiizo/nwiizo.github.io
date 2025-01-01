@@ -1,5 +1,11 @@
 <div align="center">
-  <img src="https://github.com/nwiizo.png" width="200" style="transition: all 10s cubic-bezier(.68,-0.55,.27,1.55);" onmouseover="this.style.transform='scale(200) rotate(7200deg) skew(45deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg) skew(0deg)'" />
+  <img src="https://github.com/nwiizo.png" width="200" style="transition: all 15s cubic-bezier(0.34, 1.56, 0.64, 1);" 
+onmouseover="this.style.transform='scale(1.1) rotate(0deg)'; 
+setTimeout(() => { this.style.transform='scale(5) rotate(360deg)' }, 2000);
+setTimeout(() => { this.style.transform='scale(20) rotate(1080deg)' }, 5000);
+setTimeout(() => { this.style.transform='scale(100) rotate(3600deg) skew(25deg)' }, 8000);
+setTimeout(() => { this.style.transform='scale(200) rotate(7200deg) skew(45deg)' }, 12000);"
+onmouseout="this.style.transform='scale(1) rotate(0deg) skew(0deg)'" />
   
   <h3>nwiizo a.k.a. Shuya Motouchi</h3>
 </div>
