@@ -1,5 +1,17 @@
 <div align="center">
-  <img src="https://github.com/nwiizo.png" width="200" style="border-radius: 50%">
+  <img src="https://github.com/nwiizo.png" width="200" style="transition: all 0.7s ease-in-out;" onmouseover="this.style.transform='rotate(360deg) scale(1.2)'; this.style.animation='spin 4s linear infinite'" onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.animation='none'" />
+  
+  <style>
+    @keyframes spin {
+      from {
+        transform: rotate(0deg) scale(1.2);
+      }
+      to {
+        transform: rotate(360deg) scale(1.2);
+      }
+    }
+  </style>
+  
   <h3>nwiizo a.k.a. Shuya Motouchi</h3>
 </div>
 
