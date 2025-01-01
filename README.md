@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://github.com/nwiizo.png" width="200" style="border-radius: 50%">
-  <h1>nwiizo a.k.a. Shuya Motouchi</h1>
+  <h3>nwiizo a.k.a. Shuya Motouchi</h3>
 </div>
 
 ## 👨‍💻 About Me
