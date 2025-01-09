@@ -30,12 +30,7 @@ this.style.transform='scale(1) rotate(0deg) skew(0deg)';" />
 
 ## 👨‍💻 About Me
 
-I'm a Software Developer at [@3-shake Inc.](https://3-shake.com/) and a passionate Gravure Digger. Currently focusing on:
-
-- 💼 Technical advisor for several companies
-- 📚 Bookworm exploring various genres
-- 💪 Martial arts enthusiast
-- 🔧 System development, operation, and optimization specialist
+Working as a Software Developer at [@3-shake Inc.](https://3-shake.com/) and a Technical Advisor for several companies, with a quirky hobby as a Gravure Digger, I've found myself exploring various paths in tech over the years! 😄 Between writing code, consulting tech teams, and diving into books of all genres, I somehow manage to squeeze in martial arts practice too. You might catch me speaking at tech conferences, translating documentation, or writing about my adventures on my blog. It's an unconventional path in tech, but I'm embracing every bit of it! ✨
 
 ## 🛠 Tech Stack
 
