@@ -3,38 +3,122 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>HTML to Markdown Converter</title>
+  <title>Advanced HTML ⇄ Markdown Converter</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
+    :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --danger-color: #e74c3c;
+        --warning-color: #f39c12;
+        --bg-color: #f7f7f7;
+        --card-bg: #fff;
+        --text-color: #333;
+        --border-radius: 10px;
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         font-family: 'Noto Sans JP', sans-serif;
-        background-color: #f7f7f7;
+        background-color: var(--bg-color);
         margin: 0;
         padding: 20px;
+        color: var(--text-color);
     }
 
     .container {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         padding: 30px;
     }
 
-    h2 {
+    .header {
         text-align: center;
-        color: #333;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        color: var(--text-color);
         font-weight: 700;
         margin-bottom: 10px;
+        font-size: 28px;
     }
 
     .subtitle {
-        text-align: center;
         color: #666;
         font-size: 14px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+
+    .mode-selector {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .mode-btn {
+        padding: 8px 20px;
+        border: 2px solid var(--primary-color);
+        background: white;
+        color: var(--primary-color);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+    }
+
+    .mode-btn.active {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .quick-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 400;
+        background-color: #ecf0f1;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .action-btn:hover {
+        background-color: #d5dbdb;
+        transform: translateY(-1px);
+    }
+
+    .action-btn.active {
+        background-color: var(--primary-color);
+        color: white;
     }
 
     .converter-section {
@@ -42,6 +126,34 @@
         grid-template-columns: 1fr 1fr;
         gap: 20px;
         margin-bottom: 20px;
+        position: relative;
+    }
+
+    .sync-indicator {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .sync-indicator:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .sync-indicator.active {
+        background: var(--secondary-color);
+        color: white;
     }
 
     .input-section, .output-section {
@@ -54,92 +166,222 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 10px;
+        padding: 10px;
+        background: #f8f9fa;
+        border-radius: 6px;
     }
 
     .section-title {
-        font-weight: 500;
+        font-weight: 600;
         color: #333;
         font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
-    .char-count {
+    .info-badges {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .badge {
         font-size: 12px;
-        color: #666;
+        padding: 2px 8px;
+        border-radius: 12px;
+        background: #e9ecef;
+        color: #495057;
         font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
     }
 
     textarea {
         width: 100%;
-        height: 350px;
+        height: 400px;
         padding: 15px;
-        border: none;
-        border-radius: 6px;
+        border: 2px solid transparent;
+        border-radius: 8px;
         resize: vertical;
         font-size: 14px;
         font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
-        background-color: #f0f0f0;
+        background-color: #f8f9fa;
         color: #333;
-        box-sizing: border-box;
-        transition: background-color 0.2s;
+        transition: var(--transition);
+        line-height: 1.6;
     }
 
     textarea:focus {
         outline: none;
-        background-color: #f8f8f8;
-        box-shadow: 0 0 0 2px #3498db33;
+        border-color: var(--primary-color);
+        background-color: white;
     }
 
     .output-textarea {
-        background-color: #f8f8f8;
-        border: 1px solid #ddd;
+        background-color: #f8f9fa;
     }
 
-    .quick-actions {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+    .output-textarea.editable {
+        background-color: #fff;
+        border: 2px solid #e9ecef;
+    }
+
+    .preview-panel {
+        display: none;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        min-height: 400px;
+        max-height: 600px;
+        overflow-y: auto;
+    }
+
+    .preview-panel.active {
+        display: block;
+    }
+
+    .preview-content {
+        line-height: 1.6;
+    }
+
+    .preview-content h1, .preview-content h2, .preview-content h3,
+    .preview-content h4, .preview-content h5, .preview-content h6 {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+    }
+
+    .preview-content h1 { font-size: 2em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
+    .preview-content h2 { font-size: 1.5em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
+    .preview-content h3 { font-size: 1.25em; }
+    .preview-content h4 { font-size: 1em; }
+    .preview-content h5 { font-size: 0.875em; }
+    .preview-content h6 { font-size: 0.85em; color: #6a737d; }
+
+    .preview-content p { margin-bottom: 16px; }
+    .preview-content blockquote { 
+        padding: 0 1em; 
+        color: #6a737d; 
+        border-left: 0.25em solid #dfe2e5; 
+        margin: 0 0 16px 0;
+    }
+    .preview-content code { 
+        padding: 0.2em 0.4em; 
+        background: rgba(27,31,35,0.05); 
+        border-radius: 3px; 
+        font-size: 85%;
+    }
+    .preview-content pre { 
+        padding: 16px; 
+        background: #f6f8fa; 
+        border-radius: 6px; 
+        overflow: auto;
+    }
+    .preview-content pre code { 
+        padding: 0; 
+        background: none; 
+    }
+    .preview-content table { 
+        border-collapse: collapse; 
+        margin-bottom: 16px; 
+        width: 100%;
+    }
+    .preview-content table th, .preview-content table td { 
+        padding: 6px 13px; 
+        border: 1px solid #dfe2e5; 
+    }
+    .preview-content table tr:nth-child(2n) { 
+        background-color: #f6f8fa; 
+    }
+
+    .options-panel {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 25px;
         margin-bottom: 20px;
     }
 
-    .quick-action-btn {
-        padding: 8px 16px;
-        font-size: 14px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: 'Noto Sans JP', sans-serif;
-        font-weight: 400;
-        background-color: #ecf0f1;
+    .options-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .options-title {
+        font-size: 18px;
+        font-weight: 600;
         color: #2c3e50;
     }
 
-    .quick-action-btn:hover {
-        background-color: #d5dbdb;
+    .preset-buttons {
+        display: flex;
+        gap: 8px;
     }
 
-    .quick-action-btn.active {
-        background-color: #3498db;
-        color: white;
-    }
-
-    .toggle-section {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .toggle-btn {
-        background: none;
-        border: none;
-        color: #3498db;
+    .preset-btn {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 4px;
         cursor: pointer;
-        font-size: 14px;
-        text-decoration: underline;
-        font-family: 'Noto Sans JP', sans-serif;
+        font-size: 12px;
+        transition: var(--transition);
     }
 
-    .toggle-btn:hover {
-        color: #2980b9;
+    .preset-btn:hover {
+        background: #f8f9fa;
+        border-color: var(--primary-color);
+    }
+
+    .options-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .option-group {
+        background: white;
+        padding: 15px;
+        border-radius: 6px;
+        border: 1px solid #e9ecef;
+    }
+
+    .option-group-title {
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 14px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 4px;
+        transition: var(--transition);
+    }
+
+    .checkbox-group:hover {
+        background: #f8f9fa;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        margin: 0;
+        cursor: pointer;
+    }
+
+    .checkbox-group label {
+        font-size: 13px;
+        color: #555;
+        cursor: pointer;
+        flex: 1;
     }
 
     .collapsible {
@@ -149,78 +391,51 @@
     }
 
     .collapsible.expanded {
-        max-height: 500px;
+        max-height: 1000px;
     }
 
-    .options-panel {
-        background-color: #f8f9fa;
-        border-radius: 6px;
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-
-    .options-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 15px;
-    }
-
-    .option-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .option-title {
-        font-weight: 500;
-        color: #2c3e50;
-        font-size: 14px;
-    }
-
-    .checkbox-group {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .checkbox-group input[type="checkbox"] {
-        margin: 0;
-    }
-
-    .checkbox-group label {
-        font-size: 13px;
-        color: #555;
-        cursor: pointer;
-    }
-
-    .stats {
-        background-color: #f0f0f0;
-        border-radius: 6px;
-        padding: 15px;
+    .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 15px;
+        margin-top: 20px;
     }
 
-    .stat-item {
-        font-size: 13px;
-        color: #555;
+    .stat-card {
+        background: white;
+        border-radius: 8px;
+        padding: 15px;
         text-align: center;
+        border: 1px solid #e9ecef;
+        transition: var(--transition);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .stat-value {
         display: block;
-        font-weight: 600;
-        color: #2c3e50;
-        font-size: 18px;
-        margin-bottom: 2px;
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .file-actions {
         display: flex;
         justify-content: center;
         gap: 10px;
-        margin-top: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
     }
 
     .file-btn {
@@ -230,41 +445,109 @@
         border-radius: 6px;
         color: #fff;
         cursor: pointer;
-        transition: background-color 0.3s;
-        font-family: 'Noto Sans JP', sans-serif;
+        transition: var(--transition);
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
-    .load-btn {
-        background-color: #8e44ad;
+    .file-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
-    .load-btn:hover {
-        background-color: #7d3c98;
+    .load-btn { background-color: #8e44ad; }
+    .load-btn:hover { background-color: #7d3c98; }
+    .save-btn { background-color: #e67e22; }
+    .save-btn:hover { background-color: #d35400; }
+    .copy-btn { background-color: #27ae60; }
+    .copy-btn:hover { background-color: #219a52; }
+    .clear-btn { background-color: #95a5a6; }
+    .clear-btn:hover { background-color: #7f8c8d; }
+
+    .history-panel {
+        position: fixed;
+        right: -300px;
+        top: 0;
+        width: 300px;
+        height: 100vh;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        overflow-y: auto;
     }
 
-    .save-btn {
-        background-color: #e67e22;
+    .history-panel.open {
+        right: 0;
     }
 
-    .save-btn:hover {
-        background-color: #d35400;
+    .history-header {
+        padding: 20px;
+        background: var(--primary-color);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .copy-btn {
-        background-color: #27ae60;
+    .history-list {
+        padding: 20px;
     }
 
-    .copy-btn:hover {
-        background-color: #219a52;
+    .history-item {
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
     }
 
-    .clear-btn {
-        background-color: #95a5a6;
+    .history-item:hover {
+        background: #e9ecef;
     }
 
-    .clear-btn:hover {
-        background-color: #7f8c8d;
+    .history-toggle {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+
+    .history-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 24px;
+        background: var(--secondary-color);
+        color: white;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1001;
+    }
+
+    .toast.show {
+        opacity: 1;
     }
 
     #fileInput {
@@ -276,16 +559,21 @@
             grid-template-columns: 1fr;
         }
         
-        .quick-actions, .file-actions {
-            flex-wrap: wrap;
-            justify-content: center;
+        .sync-indicator {
+            position: static;
+            transform: none;
+            margin: 10px auto;
+        }
+        
+        textarea {
+            height: 300px;
         }
         
         .options-grid {
             grid-template-columns: 1fr;
         }
         
-        .stats {
+        .stats-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
@@ -294,42 +582,95 @@
 
 <body>
   <div class="container">
-    <h2>HTML to Markdown Converter</h2>
-    <div class="subtitle">HTMLを入力すると自動でMarkdownに変換されます</div>
+    <div class="header">
+      <h1>🔄 Advanced HTML ⇄ Markdown Converter</h1>
+      <div class="subtitle">HTMLとMarkdownを相互に変換・編集できる高機能コンバーター</div>
+    </div>
+
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="html-to-md">HTML → Markdown (双方向編集)</button>
+      <button class="mode-btn" data-mode="md-to-html">Markdown → HTML</button>
+      <button class="mode-btn" data-mode="dual">自由編集モード</button>
+    </div>
     
-    <div class="quick-actions">
-      <button class="quick-action-btn active" id="realtimeToggle">リアルタイム変換</button>
-      <button class="quick-action-btn" id="formatToggle">自動整形</button>
-      <button class="quick-action-btn" id="previewToggle">プレビュー</button>
+    <div class="toolbar">
+      <div class="quick-actions">
+        <button class="action-btn active" id="realtimeToggle">
+          <span>⚡</span> リアルタイム変換
+        </button>
+        <button class="action-btn" id="formatToggle">
+          <span>✨</span> 自動整形
+        </button>
+        <button class="action-btn" id="previewToggle">
+          <span>👁️</span> プレビュー
+        </button>
+        <button class="action-btn" id="syntaxHighlight">
+          <span>🎨</span> シンタックスハイライト
+        </button>
+        <button class="action-btn" id="diffToggle">
+          <span>🔍</span> 差分表示
+        </button>
+      </div>
+      
+      <button class="action-btn" id="optionsToggle">
+        <span>⚙️</span> 詳細設定
+      </button>
     </div>
     
     <div class="converter-section">
+      <div class="sync-indicator active" id="syncIndicator" title="双方向同期">
+        <span>⇄</span>
+      </div>
+      
       <div class="input-section">
         <div class="section-header">
-          <div class="section-title">HTML Input</div>
-          <div class="char-count" id="htmlCharCount">0文字 / 0行</div>
+          <div class="section-title">
+            <span id="leftPanelTitle">📝 HTML Input</span>
+          </div>
+          <div class="info-badges">
+            <span class="badge" id="leftCharCount">0文字</span>
+            <span class="badge" id="leftLineCount">0行</span>
+            <span class="badge" id="leftFormat">HTML</span>
+          </div>
         </div>
-        <textarea id="htmlInput" placeholder="ここにHTMLコードを入力してください..."></textarea>
+        <textarea id="leftInput" placeholder="ここにコードを入力してください..." spellcheck="false"></textarea>
       </div>
       
       <div class="output-section">
         <div class="section-header">
-          <div class="section-title">Markdown Output</div>
-          <div class="char-count" id="markdownCharCount">0文字 / 0行</div>
+          <div class="section-title">
+            <span id="rightPanelTitle">📄 Markdown Output</span>
+          </div>
+          <div class="info-badges">
+            <span class="badge" id="rightCharCount">0文字</span>
+            <span class="badge" id="rightLineCount">0行</span>
+            <span class="badge" id="rightFormat">Markdown</span>
+          </div>
         </div>
-        <textarea id="markdownOutput" class="output-textarea" readonly placeholder="変換されたMarkdownがここに表示されます..."></textarea>
+        <textarea id="rightOutput" class="output-textarea" placeholder="変換結果がここに表示されます..." spellcheck="false"></textarea>
+        <div class="preview-panel" id="previewPanel">
+          <div class="preview-content" id="previewContent"></div>
+        </div>
       </div>
-    </div>
-
-    <div class="toggle-section">
-      <button class="toggle-btn" id="optionsToggle">詳細オプション ▼</button>
     </div>
 
     <div class="collapsible" id="optionsPanel">
       <div class="options-panel">
+        <div class="options-header">
+          <h3 class="options-title">⚙️ 変換オプション</h3>
+          <div class="preset-buttons">
+            <button class="preset-btn" data-preset="default">デフォルト</button>
+            <button class="preset-btn" data-preset="github">GitHub風</button>
+            <button class="preset-btn" data-preset="minimal">最小限</button>
+            <button class="preset-btn" data-preset="strict">厳密</button>
+          </div>
+        </div>
+        
         <div class="options-grid">
           <div class="option-group">
-            <div class="option-title">変換オプション</div>
+            <div class="option-group-title">
+              <span>📋</span> 基本設定
+            </div>
             <div class="checkbox-group">
               <input type="checkbox" id="preserveWhitespace" checked>
               <label for="preserveWhitespace">空白を保持</label>
@@ -342,326 +683,828 @@
               <input type="checkbox" id="convertImages" checked>
               <label for="convertImages">画像を変換</label>
             </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="convertLinks" checked>
+              <label for="convertLinks">リンクを変換</label>
+            </div>
           </div>
           
           <div class="option-group">
-            <div class="option-title">フォーマット</div>
+            <div class="option-group-title">
+              <span>🎨</span> フォーマット
+            </div>
             <div class="checkbox-group">
               <input type="checkbox" id="addLineBreaks" checked>
               <label for="addLineBreaks">適度な改行を追加</label>
             </div>
             <div class="checkbox-group">
               <input type="checkbox" id="removeComments" checked>
-              <label for="removeComments">HTMLコメントを削除</label>
+              <label for="removeComments">コメントを削除</label>
             </div>
             <div class="checkbox-group">
               <input type="checkbox" id="escapeSpecialChars">
               <label for="escapeSpecialChars">特殊文字をエスケープ</label>
             </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="prettifyOutput" checked>
+              <label for="prettifyOutput">出力を整形</label>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <div class="option-group-title">
+              <span>🔧</span> 高度な設定
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="preserveAttributes">
+              <label for="preserveAttributes">HTML属性を保持</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="useReferenceLinks">
+              <label for="useReferenceLinks">参照リンクを使用</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="convertMath">
+              <label for="convertMath">数式を変換</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="enableExtensions" checked>
+              <label for="enableExtensions">拡張機能を有効化</label>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div class="stats" id="statsPanel">
-        <div class="stat-item">
-          <span class="stat-value" id="htmlCount">0</span>
-          HTML文字数
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" id="markdownCount">0</span>
-          Markdown文字数
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" id="htmlLines">0</span>
-          HTML行数
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" id="markdownLines">0</span>
-          Markdown行数
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" id="compressionRatio">0%</span>
-          圧縮率
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" id="conversionTime">0ms</span>
-          変換時間
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-value" id="totalChars">0</span>
+            <span class="stat-label">総文字数</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="totalWords">0</span>
+            <span class="stat-label">総単語数</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="compressionRatio">0%</span>
+            <span class="stat-label">圧縮率</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="conversionTime">0ms</span>
+            <span class="stat-label">変換時間</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="elementCount">0</span>
+            <span class="stat-label">要素数</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="linkCount">0</span>
+            <span class="stat-label">リンク数</span>
+          </div>
         </div>
       </div>
     </div>
     
     <div class="file-actions">
-      <input type="file" id="fileInput" accept=".html,.htm,.txt">
-      <button id="loadButton" class="file-btn load-btn">ファイル読込</button>
-      <button id="saveButton" class="file-btn save-btn">保存</button>
-      <button id="copyButton" class="file-btn copy-btn">コピー</button>
-      <button id="clearButton" class="file-btn clear-btn">クリア</button>
+      <input type="file" id="fileInput" accept=".html,.htm,.md,.markdown,.txt">
+      <button id="loadButton" class="file-btn load-btn">
+        <span>📁</span> ファイル読込
+      </button>
+      <button id="saveHtmlButton" class="file-btn save-btn">
+        <span>💾</span> HTMLで保存
+      </button>
+      <button id="saveMarkdownButton" class="file-btn save-btn">
+        <span>💾</span> MDで保存
+      </button>
+      <button id="copyHtmlButton" class="file-btn copy-btn">
+        <span>📋</span> HTMLコピー
+      </button>
+      <button id="copyMarkdownButton" class="file-btn copy-btn">
+        <span>📋</span> MDコピー
+      </button>
+      <button id="clearButton" class="file-btn clear-btn">
+        <span>🗑️</span> クリア
+      </button>
     </div>
   </div>
 
+  <div class="history-panel" id="historyPanel">
+    <div class="history-header">
+      <h3>変換履歴</h3>
+      <button onclick="closeHistory()" style="background: none; border: none; color: white; cursor: pointer; font-size: 20px;">×</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+  <button class="history-toggle" id="historyToggle" title="履歴">
+    <span>📚</span>
+  </button>
+
+  <div class="toast" id="toast"></div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const htmlInput = document.getElementById('htmlInput');
-        const markdownOutput = document.getElementById('markdownOutput');
-        
-        // UI elements
-        const realtimeToggle = document.getElementById('realtimeToggle');
-        const formatToggle = document.getElementById('formatToggle');
-        const previewToggle = document.getElementById('previewToggle');
-        const optionsToggle = document.getElementById('optionsToggle');
-        const optionsPanel = document.getElementById('optionsPanel');
-        
-        // Statistics elements  
-        const htmlCharCount = document.getElementById('htmlCharCount');
-        const markdownCharCount = document.getElementById('markdownCharCount');
-        const htmlCount = document.getElementById('htmlCount');
-        const markdownCount = document.getElementById('markdownCount');
-        const htmlLines = document.getElementById('htmlLines');
-        const markdownLines = document.getElementById('markdownLines');
-        const compressionRatio = document.getElementById('compressionRatio');
-        const conversionTime = document.getElementById('conversionTime');
-        
-        // Action buttons
-        const loadButton = document.getElementById('loadButton');
-        const saveButton = document.getElementById('saveButton');
-        const copyButton = document.getElementById('copyButton');
-        const clearButton = document.getElementById('clearButton');
-        const fileInput = document.getElementById('fileInput');
-        
-        // Options
-        const preserveWhitespace = document.getElementById('preserveWhitespace');
-        const convertTables = document.getElementById('convertTables');
-        const convertImages = document.getElementById('convertImages');
-        const addLineBreaks = document.getElementById('addLineBreaks');
-        const removeComments = document.getElementById('removeComments');
-        const escapeSpecialChars = document.getElementById('escapeSpecialChars');
-        
-        let isRealtimeEnabled = true;
-        let isFormatEnabled = false;
+    // State management
+    const state = {
+        mode: 'html-to-md',
+        isRealtimeEnabled: true,
+        isFormatEnabled: false,
+        isPreviewEnabled: false,
+        isSyntaxHighlightEnabled: false,
+        isDiffEnabled: false,
+        isMarkdownEditable: false,
+        conversionHistory: [],
+        lastConversion: null
+    };
 
-        function htmlToMarkdown(html) {
-            const startTime = performance.now();
-            
-            // Remove comments if option is enabled
-            if (removeComments.checked) {
-                html = html.replace(/<!--[\s\S]*?-->/g, '');
+    // DOM elements
+    const elements = {
+        leftInput: document.getElementById('leftInput'),
+        rightOutput: document.getElementById('rightOutput'),
+        leftPanelTitle: document.getElementById('leftPanelTitle'),
+        rightPanelTitle: document.getElementById('rightPanelTitle'),
+        leftFormat: document.getElementById('leftFormat'),
+        rightFormat: document.getElementById('rightFormat'),
+        previewPanel: document.getElementById('previewPanel'),
+        previewContent: document.getElementById('previewContent'),
+        syncIndicator: document.getElementById('syncIndicator'),
+        optionsPanel: document.getElementById('optionsPanel'),
+        historyPanel: document.getElementById('historyPanel'),
+        historyList: document.getElementById('historyList'),
+        toast: document.getElementById('toast'),
+        fileInput: document.getElementById('fileInput')
+    };
+
+    // Utility functions
+    function showToast(message, duration = 3000) {
+        elements.toast.textContent = message;
+        elements.toast.classList.add('show');
+        setTimeout(() => {
+            elements.toast.classList.remove('show');
+        }, duration);
+    }
+
+    function updateCharCount(textarea, charElement, lineElement) {
+        const text = textarea.value;
+        const charCount = text.length;
+        const lineCount = text ? text.split('\n').length : 0;
+        charElement.textContent = `${charCount}文字`;
+        lineElement.textContent = `${lineCount}行`;
+        return { charCount, lineCount };
+    }
+
+    function updateStats() {
+        const leftText = elements.leftInput.value;
+        const rightText = elements.rightOutput.value;
+        
+        // Update character and line counts
+        const leftStats = updateCharCount(elements.leftInput, 
+            document.getElementById('leftCharCount'), 
+            document.getElementById('leftLineCount'));
+        const rightStats = updateCharCount(elements.rightOutput, 
+            document.getElementById('rightCharCount'), 
+            document.getElementById('rightLineCount'));
+        
+        // Update detailed stats
+        document.getElementById('totalChars').textContent = leftStats.charCount + rightStats.charCount;
+        document.getElementById('totalWords').textContent = 
+            (leftText.match(/\S+/g) || []).length + (rightText.match(/\S+/g) || []).length;
+        
+        const ratio = leftStats.charCount > 0 ? 
+            Math.round(((leftStats.charCount - rightStats.charCount) / leftStats.charCount) * 100) : 0;
+        document.getElementById('compressionRatio').textContent = ratio + '%';
+        
+        // Count elements and links
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = state.mode === 'html-to-md' ? leftText : rightText;
+        document.getElementById('elementCount').textContent = tempDiv.getElementsByTagName('*').length;
+        document.getElementById('linkCount').textContent = tempDiv.getElementsByTagName('a').length;
+    }
+
+    // Conversion functions
+    function htmlToMarkdown(html) {
+        const startTime = performance.now();
+        const options = getConversionOptions();
+        
+        if (options.removeComments) {
+            html = html.replace(/<!--[\s\S]*?-->/g, '');
+        }
+        
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        
+        function processNode(node, listLevel = 0) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                let text = node.textContent;
+                if (options.escapeSpecialChars) {
+                    text = text.replace(/([*_`\[\]()#+\-.!])/g, '\\$1');
+                }
+                return text;
             }
             
-            // Create a temporary div to parse HTML
-            const temp = document.createElement('div');
-            temp.innerHTML = html;
+            if (node.nodeType !== Node.ELEMENT_NODE) {
+                return '';
+            }
             
-            function processNode(node) {
-                if (node.nodeType === Node.TEXT_NODE) {
-                    let text = node.textContent;
-                    if (escapeSpecialChars.checked) {
-                        text = text.replace(/([*_`\[\]()#+\-.!])/g, '\\$1');
+            const tagName = node.tagName.toLowerCase();
+            const childContent = Array.from(node.childNodes)
+                .map(child => processNode(child, listLevel))
+                .join('');
+            
+            switch (tagName) {
+                case 'h1': return `# ${childContent}\n\n`;
+                case 'h2': return `## ${childContent}\n\n`;
+                case 'h3': return `### ${childContent}\n\n`;
+                case 'h4': return `#### ${childContent}\n\n`;
+                case 'h5': return `##### ${childContent}\n\n`;
+                case 'h6': return `###### ${childContent}\n\n`;
+                case 'p': return `${childContent}\n\n`;
+                case 'br': return options.addLineBreaks ? '\n' : ' ';
+                case 'strong':
+                case 'b': return `**${childContent}**`;
+                case 'em':
+                case 'i': return `*${childContent}*`;
+                case 'u': return `<u>${childContent}</u>`;
+                case 'del':
+                case 's': return `~~${childContent}~~`;
+                case 'code':
+                    if (node.parentElement && node.parentElement.tagName.toLowerCase() === 'pre') {
+                        const lang = node.className.replace('language-', '');
+                        return lang ? `\`\`\`${lang}\n${childContent}\n\`\`\`` : childContent;
                     }
-                    return text;
-                }
-                
-                if (node.nodeType !== Node.ELEMENT_NODE) {
-                    return '';
-                }
-                
-                const tagName = node.tagName.toLowerCase();
-                const childContent = Array.from(node.childNodes).map(processNode).join('');
-                
-                switch (tagName) {
-                    case 'h1': return `# ${childContent}\n\n`;
-                    case 'h2': return `## ${childContent}\n\n`;
-                    case 'h3': return `### ${childContent}\n\n`;
-                    case 'h4': return `#### ${childContent}\n\n`;
-                    case 'h5': return `##### ${childContent}\n\n`;
-                    case 'h6': return `###### ${childContent}\n\n`;
-                    case 'p': return `${childContent}\n\n`;
-                    case 'br': return addLineBreaks.checked ? '\n' : ' ';
-                    case 'strong':
-                    case 'b': return `**${childContent}**`;
-                    case 'em':
-                    case 'i': return `*${childContent}*`;
-                    case 'u': return `<u>${childContent}</u>`;
-                    case 'del':
-                    case 's': return `~~${childContent}~~`;
-                    case 'code':
-                        return node.parentElement && node.parentElement.tagName.toLowerCase() === 'pre' 
-                            ? childContent 
-                            : `\`${childContent}\``;
-                    case 'pre': return `\`\`\`\n${childContent}\n\`\`\`\n\n`;
-                    case 'blockquote':
-                        return childContent.split('\n').map(line => line.trim() ? `> ${line}` : '>').join('\n') + '\n\n';
-                    case 'a':
-                        const href = node.getAttribute('href') || '';
-                        const title = node.getAttribute('title');
+                    return `\`${childContent}\``;
+                case 'pre': 
+                    const codeBlock = node.querySelector('code');
+                    if (codeBlock) {
+                        return processNode(codeBlock) + '\n\n';
+                    }
+                    return `\`\`\`\n${childContent}\n\`\`\`\n\n`;
+                case 'blockquote':
+                    return childContent.split('\n')
+                        .map(line => line.trim() ? `> ${line}` : '>')
+                        .join('\n') + '\n\n';
+                case 'a':
+                    if (!options.convertLinks) return childContent;
+                    const href = node.getAttribute('href') || '';
+                    const title = node.getAttribute('title');
+                    if (options.useReferenceLinks && href) {
+                        // Implementation for reference links would go here
                         return title ? `[${childContent}](${href} "${title}")` : `[${childContent}](${href})`;
-                    case 'img':
-                        if (!convertImages.checked) return '';
-                        const src = node.getAttribute('src') || '';
-                        const alt = node.getAttribute('alt') || '';
-                        const imgTitle = node.getAttribute('title');
-                        return imgTitle ? `![${alt}](${src} "${imgTitle}")` : `![${alt}](${src})`;
-                    case 'ul': return `${childContent}\n`;
-                    case 'ol': return `${childContent}\n`;
-                    case 'li':
-                        const parent = node.parentElement;
-                        if (parent && parent.tagName.toLowerCase() === 'ol') {
-                            const index = Array.from(parent.children).indexOf(node) + 1;
-                            return `${index}. ${childContent}\n`;
-                        } else {
-                            return `- ${childContent}\n`;
-                        }
-                    case 'hr': return '---\n\n';
-                    case 'table':
-                        return convertTables.checked ? `${childContent}\n` : childContent;
-                    case 'thead':
-                    case 'tbody': return childContent;
-                    case 'tr':
-                        if (!convertTables.checked) return childContent;
-                        const cells = Array.from(node.children).map(cell => {
-                            const content = Array.from(cell.childNodes).map(processNode).join('').trim();
-                            return content || ' ';
-                        });
-                        let row = `| ${cells.join(' | ')} |\n`;
-                        
-                        if (node.parentElement && node.parentElement.tagName.toLowerCase() === 'thead') {
-                            const separator = '| ' + cells.map(() => '---').join(' | ') + ' |\n';
-                            row += separator;
-                        }
-                        return row;
-                    case 'th':
-                    case 'td': return childContent;
-                    case 'div':
-                    case 'span': return childContent;
-                    default: return childContent;
-                }
-            }
-            
-            let markdown = processNode(temp);
-            
-            // Clean up formatting if enabled
-            if (isFormatEnabled) {
-                markdown = markdown.replace(/\n{3,}/g, '\n\n');
-                markdown = markdown.replace(/^\s+|\s+$/g, '');
-            }
-            
-            if (!preserveWhitespace.checked) {
-                markdown = markdown.replace(/[ \t]+/g, ' ');
-            }
-            
-            markdown = markdown.trim();
-            
-            const endTime = performance.now();
-            conversionTime.textContent = Math.round(endTime - startTime) + 'ms';
-            
-            return markdown;
-        }
-
-        function updateStats() {
-            const htmlText = htmlInput.value;
-            const markdownText = markdownOutput.value;
-            
-            const htmlChars = htmlText.length;
-            const markdownChars = markdownText.length;
-            const htmlLineCount = htmlText ? htmlText.split('\n').length : 0;
-            const markdownLineCount = markdownText ? markdownText.split('\n').length : 0;
-            
-            htmlCharCount.textContent = `${htmlChars}文字 / ${htmlLineCount}行`;
-            markdownCharCount.textContent = `${markdownChars}文字 / ${markdownLineCount}行`;
-            
-            htmlCount.textContent = htmlChars;
-            markdownCount.textContent = markdownChars;
-            htmlLines.textContent = htmlLineCount;
-            markdownLines.textContent = markdownLineCount;
-            
-            const ratio = htmlChars > 0 ? Math.round(((htmlChars - markdownChars) / htmlChars) * 100) : 0;
-            compressionRatio.textContent = ratio + '%';
-        }
-
-        function convert() {
-            if (isRealtimeEnabled) {
-                const markdown = htmlToMarkdown(htmlInput.value);
-                markdownOutput.value = markdown;
-                updateStats();
+                    }
+                    return title ? `[${childContent}](${href} "${title}")` : `[${childContent}](${href})`;
+                case 'img':
+                    if (!options.convertImages) return '';
+                    const src = node.getAttribute('src') || '';
+                    const alt = node.getAttribute('alt') || '';
+                    const imgTitle = node.getAttribute('title');
+                    return imgTitle ? `![${alt}](${src} "${imgTitle}")` : `![${alt}](${src})`;
+                case 'ul': 
+                case 'ol': 
+                    return childContent + '\n';
+                case 'li':
+                    const parent = node.parentElement;
+                    const indent = '  '.repeat(listLevel);
+                    if (parent && parent.tagName.toLowerCase() === 'ol') {
+                        const index = Array.from(parent.children).indexOf(node) + 1;
+                        return `${indent}${index}. ${childContent}\n`;
+                    } else {
+                        return `${indent}- ${childContent}\n`;
+                    }
+                case 'hr': return '---\n\n';
+                case 'table':
+                    if (!options.convertTables) return childContent;
+                    return `${childContent}\n`;
+                case 'thead':
+                case 'tbody': return childContent;
+                case 'tr':
+                    if (!options.convertTables) return childContent;
+                    const cells = Array.from(node.children).map(cell => {
+                        const content = Array.from(cell.childNodes)
+                            .map(child => processNode(child, listLevel))
+                            .join('')
+                            .trim();
+                        return content || ' ';
+                    });
+                    let row = `| ${cells.join(' | ')} |\n`;
+                    
+                    if (node.parentElement && node.parentElement.tagName.toLowerCase() === 'thead') {
+                        const separator = '| ' + cells.map(() => '---').join(' | ') + ' |\n';
+                        row += separator;
+                    }
+                    return row;
+                case 'th':
+                case 'td': return childContent;
+                case 'div':
+                case 'span': 
+                    if (options.preserveAttributes && (node.id || node.className)) {
+                        return childContent;
+                    }
+                    return childContent;
+                default: return childContent;
             }
         }
-
-        // Event listeners
-        htmlInput.addEventListener('input', convert);
         
-        // Option changes trigger reconversion
-        [preserveWhitespace, convertTables, convertImages, addLineBreaks, removeComments, escapeSpecialChars].forEach(option => {
-            option.addEventListener('change', convert);
+        let markdown = processNode(temp);
+        
+        if (options.prettifyOutput) {
+            markdown = markdown.replace(/\n{3,}/g, '\n\n');
+            markdown = markdown.replace(/^\s+|\s+$/g, '');
+        }
+        
+        if (!options.preserveWhitespace) {
+            markdown = markdown.replace(/[ \t]+/g, ' ');
+        }
+        
+        const endTime = performance.now();
+        document.getElementById('conversionTime').textContent = Math.round(endTime - startTime) + 'ms';
+        
+        return markdown.trim();
+    }
+
+    function markdownToHtml(markdown) {
+        const startTime = performance.now();
+        const options = getConversionOptions();
+        
+        // Basic Markdown to HTML conversion
+        let html = markdown;
+        
+        // Headers
+        html = html.replace(/^###### (.*?)$/gm, '<h6>$1</h6>');
+        html = html.replace(/^##### (.*?)$/gm, '<h5>$1</h5>');
+        html = html.replace(/^#### (.*?)$/gm, '<h4>$1</h4>');
+        html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+        html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+        html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+        
+        // Bold and italic
+        html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
+        
+        // Links and images
+        html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+        
+        // Code blocks
+        html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, function(match, lang, code) {
+            const langClass = lang ? ` class="language-${lang}"` : '';
+            return `<pre><code${langClass}>${escapeHtml(code.trim())}</code></pre>`;
         });
-
-        realtimeToggle.addEventListener('click', () => {
-            isRealtimeEnabled = !isRealtimeEnabled;
-            realtimeToggle.classList.toggle('active', isRealtimeEnabled);
-            if (isRealtimeEnabled) convert();
-        });
-
-        formatToggle.addEventListener('click', () => {
-            isFormatEnabled = !isFormatEnabled;
-            formatToggle.classList.toggle('active', isFormatEnabled);
-            if (isRealtimeEnabled) convert();
-        });
-
-        optionsToggle.addEventListener('click', () => {
-            const isExpanded = optionsPanel.classList.contains('expanded');
-            optionsPanel.classList.toggle('expanded');
-            optionsToggle.textContent = isExpanded ? '詳細オプション ▼' : '詳細オプション ▲';
-        });
-
-        loadButton.addEventListener('click', () => fileInput.click());
-
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    htmlInput.value = e.target.result;
-                    convert();
-                };
-                reader.readAsText(file);
+        
+        // Inline code
+        html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+        
+        // Blockquotes
+        html = html.replace(/^> (.*?)$/gm, '<blockquote>$1</blockquote>');
+        html = html.replace(/<\/blockquote>\n<blockquote>/g, '\n');
+        
+        // Lists
+        html = html.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
+        html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ol>$&</ol>');
+        html = html.replace(/^- (.*?)$/gm, '<li>$1</li>');
+        html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+        
+        // Horizontal rules
+        html = html.replace(/^---$/gm, '<hr>');
+        
+        // Paragraphs
+        html = html.split('\n\n').map(para => {
+            if (!para.match(/^<[^>]+>/)) {
+                return `<p>${para}</p>`;
             }
-        });
+            return para;
+        }).join('\n');
+        
+        const endTime = performance.now();
+        document.getElementById('conversionTime').textContent = Math.round(endTime - startTime) + 'ms';
+        
+        return html;
+    }
 
-        saveButton.addEventListener('click', () => {
-            const blob = new Blob([markdownOutput.value], { type: 'text/markdown' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'converted.md';
-            a.click();
-            URL.revokeObjectURL(url);
-        });
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, m => map[m]);
+    }
 
-        copyButton.addEventListener('click', async () => {
-            if (markdownOutput.value) {
-                try {
-                    await navigator.clipboard.writeText(markdownOutput.value);
-                    const originalText = copyButton.textContent;
-                    copyButton.textContent = 'コピー完了！';
-                    copyButton.style.backgroundColor = '#27ae60';
-                    setTimeout(() => {
-                        copyButton.textContent = originalText;
-                        copyButton.style.backgroundColor = '#27ae60';
-                    }, 2000);
-                } catch (err) {
-                    markdownOutput.select();
-                    document.execCommand('copy');
-                }
-            }
-        });
+    function getConversionOptions() {
+        return {
+            preserveWhitespace: document.getElementById('preserveWhitespace').checked,
+            convertTables: document.getElementById('convertTables').checked,
+            convertImages: document.getElementById('convertImages').checked,
+            convertLinks: document.getElementById('convertLinks').checked,
+            addLineBreaks: document.getElementById('addLineBreaks').checked,
+            removeComments: document.getElementById('removeComments').checked,
+            escapeSpecialChars: document.getElementById('escapeSpecialChars').checked,
+            prettifyOutput: document.getElementById('prettifyOutput').checked,
+            preserveAttributes: document.getElementById('preserveAttributes').checked,
+            useReferenceLinks: document.getElementById('useReferenceLinks').checked,
+            convertMath: document.getElementById('convertMath').checked,
+            enableExtensions: document.getElementById('enableExtensions').checked
+        };
+    }
 
-        clearButton.addEventListener('click', () => {
-            htmlInput.value = '';
-            markdownOutput.value = '';
-            updateStats();
-        });
-
-        // Initialize
+    function convert() {
+        if (!state.isRealtimeEnabled) return;
+        
+        let result = '';
+        if (state.mode === 'html-to-md') {
+            result = htmlToMarkdown(elements.leftInput.value);
+            elements.rightOutput.value = result;
+        } else if (state.mode === 'md-to-html') {
+            result = markdownToHtml(elements.leftInput.value);
+            elements.rightOutput.value = result;
+        }
+        
         updateStats();
+        updatePreview();
+        
+        // Add to history
+        if (result && result !== state.lastConversion) {
+            state.lastConversion = result;
+            addToHistory(elements.leftInput.value, result);
+        }
+    }
+
+    function updatePreview() {
+        if (!state.isPreviewEnabled) return;
+        
+        let htmlContent = '';
+        if (state.mode === 'html-to-md') {
+            htmlContent = markdownToHtml(elements.rightOutput.value);
+        } else {
+            htmlContent = elements.rightOutput.value;
+        }
+        
+        elements.previewContent.innerHTML = htmlContent;
+    }
+
+    function addToHistory(input, output) {
+        const historyItem = {
+            timestamp: new Date().toLocaleString(),
+            input: input.substring(0, 100) + (input.length > 100 ? '...' : ''),
+            output: output.substring(0, 100) + (output.length > 100 ? '...' : ''),
+            fullInput: input,
+            fullOutput: output
+        };
+        
+        state.conversionHistory.unshift(historyItem);
+        if (state.conversionHistory.length > 20) {
+            state.conversionHistory.pop();
+        }
+        
+        updateHistoryPanel();
+    }
+
+    function updateHistoryPanel() {
+        elements.historyList.innerHTML = state.conversionHistory.map((item, index) => `
+            <div class="history-item" onclick="loadFromHistory(${index})">
+                <div style="font-weight: 600; margin-bottom: 5px;">${item.timestamp}</div>
+                <div style="font-size: 12px; color: #666;">${item.input}</div>
+            </div>
+        `).join('');
+    }
+
+    function loadFromHistory(index) {
+        const item = state.conversionHistory[index];
+        elements.leftInput.value = item.fullInput;
+        elements.rightOutput.value = item.fullOutput;
+        updateStats();
+        closeHistory();
+        showToast('履歴から読み込みました');
+    }
+
+    function closeHistory() {
+        elements.historyPanel.classList.remove('open');
+    }
+
+    function setMode(mode) {
+        state.mode = mode;
+        
+        // Update UI based on mode
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-mode') === mode);
+        });
+        
+        if (mode === 'html-to-md') {
+            elements.leftPanelTitle.textContent = '📝 HTML Input';
+            elements.rightPanelTitle.textContent = '📄 Markdown Output';
+            elements.leftFormat.textContent = 'HTML';
+            elements.rightFormat.textContent = 'Markdown';
+            elements.rightOutput.readOnly = false;
+            elements.rightOutput.classList.add('editable');
+            state.isMarkdownEditable = true;
+        } else if (mode === 'md-to-html') {
+            elements.leftPanelTitle.textContent = '📄 Markdown Input';
+            elements.rightPanelTitle.textContent = '📝 HTML Output';
+            elements.leftFormat.textContent = 'Markdown';
+            elements.rightFormat.textContent = 'HTML';
+            elements.rightOutput.readOnly = true;
+            elements.rightOutput.classList.remove('editable');
+            state.isMarkdownEditable = false;
+        } else if (mode === 'dual') {
+            elements.leftPanelTitle.textContent = '📝 HTML';
+            elements.rightPanelTitle.textContent = '📄 Markdown';
+            elements.leftFormat.textContent = 'HTML';
+            elements.rightFormat.textContent = 'Markdown';
+            elements.rightOutput.readOnly = false;
+            elements.rightOutput.classList.add('editable');
+            state.isMarkdownEditable = true;
+        }
+        
+        // Clear and convert
+        elements.leftInput.value = '';
+        elements.rightOutput.value = '';
+        updateStats();
+    }
+
+    function applyPreset(preset) {
+        const presets = {
+            default: {
+                preserveWhitespace: true,
+                convertTables: true,
+                convertImages: true,
+                convertLinks: true,
+                addLineBreaks: true,
+                removeComments: true,
+                escapeSpecialChars: false,
+                prettifyOutput: true,
+                preserveAttributes: false,
+                useReferenceLinks: false,
+                convertMath: false,
+                enableExtensions: true
+            },
+            github: {
+                preserveWhitespace: false,
+                convertTables: true,
+                convertImages: true,
+                convertLinks: true,
+                addLineBreaks: true,
+                removeComments: true,
+                escapeSpecialChars: false,
+                prettifyOutput: true,
+                preserveAttributes: false,
+                useReferenceLinks: false,
+                convertMath: true,
+                enableExtensions: true
+            },
+            minimal: {
+                preserveWhitespace: false,
+                convertTables: false,
+                convertImages: true,
+                convertLinks: true,
+                addLineBreaks: false,
+                removeComments: true,
+                escapeSpecialChars: false,
+                prettifyOutput: false,
+                preserveAttributes: false,
+                useReferenceLinks: false,
+                convertMath: false,
+                enableExtensions: false
+            },
+            strict: {
+                preserveWhitespace: true,
+                convertTables: true,
+                convertImages: true,
+                convertLinks: true,
+                addLineBreaks: true,
+                removeComments: false,
+                escapeSpecialChars: true,
+                prettifyOutput: false,
+                preserveAttributes: true,
+                useReferenceLinks: false,
+                convertMath: true,
+                enableExtensions: true
+            }
+        };
+        
+        const settings = presets[preset];
+        if (settings) {
+            Object.keys(settings).forEach(key => {
+                const checkbox = document.getElementById(key);
+                if (checkbox) checkbox.checked = settings[key];
+            });
+            convert();
+            showToast(`プリセット「${preset}」を適用しました`);
+        }
+    }
+
+    // Event listeners
+    elements.leftInput.addEventListener('input', convert);
+    
+    elements.rightOutput.addEventListener('input', () => {
+        if (state.isMarkdownEditable) {
+            if (state.mode === 'html-to-md') {
+                // HTML → Markdown モードでMarkdownを編集した場合
+                // Markdownを一旦HTMLに変換してから、左側のHTMLパネルに反映
+                const html = markdownToHtml(elements.rightOutput.value);
+                elements.leftInput.value = html;
+                updateStats();
+                updatePreview();
+            } else if (state.mode === 'dual') {
+                // 双方向編集モード
+                const html = markdownToHtml(elements.rightOutput.value);
+                elements.leftInput.value = html;
+                updateStats();
+                updatePreview();
+            }
+        }
     });
+
+    // Mode buttons
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            setMode(btn.getAttribute('data-mode'));
+        });
+    });
+
+    // Toggle buttons
+    document.getElementById('realtimeToggle').addEventListener('click', function() {
+        state.isRealtimeEnabled = !state.isRealtimeEnabled;
+        this.classList.toggle('active', state.isRealtimeEnabled);
+        if (state.isRealtimeEnabled) convert();
+    });
+
+    document.getElementById('formatToggle').addEventListener('click', function() {
+        state.isFormatEnabled = !state.isFormatEnabled;
+        this.classList.toggle('active', state.isFormatEnabled);
+        if (state.isRealtimeEnabled) convert();
+    });
+
+    document.getElementById('previewToggle').addEventListener('click', function() {
+        state.isPreviewEnabled = !state.isPreviewEnabled;
+        this.classList.toggle('active', state.isPreviewEnabled);
+        elements.previewPanel.classList.toggle('active', state.isPreviewEnabled);
+        if (state.isPreviewEnabled) {
+            elements.rightOutput.style.display = 'none';
+            updatePreview();
+        } else {
+            elements.rightOutput.style.display = 'block';
+        }
+    });
+
+    document.getElementById('syntaxHighlight').addEventListener('click', function() {
+        state.isSyntaxHighlightEnabled = !state.isSyntaxHighlightEnabled;
+        this.classList.toggle('active', state.isSyntaxHighlightEnabled);
+        showToast('シンタックスハイライト: ' + (state.isSyntaxHighlightEnabled ? 'ON' : 'OFF'));
+    });
+
+    document.getElementById('diffToggle').addEventListener('click', function() {
+        state.isDiffEnabled = !state.isDiffEnabled;
+        this.classList.toggle('active', state.isDiffEnabled);
+        showToast('差分表示: ' + (state.isDiffEnabled ? 'ON' : 'OFF'));
+    });
+
+    document.getElementById('optionsToggle').addEventListener('click', () => {
+        const isExpanded = elements.optionsPanel.classList.contains('expanded');
+        elements.optionsPanel.classList.toggle('expanded');
+        document.getElementById('optionsToggle').innerHTML = isExpanded ? 
+            '<span>⚙️</span> 詳細設定' : '<span>⚙️</span> 詳細設定を隠す';
+    });
+
+    elements.syncIndicator.addEventListener('click', () => {
+        showToast('双方向編集モードに切り替えました');
+        setMode('dual');
+    });
+
+    // Preset buttons
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            applyPreset(btn.getAttribute('data-preset'));
+        });
+    });
+
+    // Option checkboxes
+    document.querySelectorAll('.checkbox-group input').forEach(checkbox => {
+        checkbox.addEventListener('change', convert);
+    });
+
+    // File operations
+    document.getElementById('loadButton').addEventListener('click', () => {
+        elements.fileInput.click();
+    });
+
+    elements.fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const content = e.target.result;
+                const extension = file.name.split('.').pop().toLowerCase();
+                
+                if (extension === 'md' || extension === 'markdown') {
+                    setMode('md-to-html');
+                    elements.leftInput.value = content;
+                } else {
+                    setMode('html-to-md');
+                    elements.leftInput.value = content;
+                }
+                
+                convert();
+                showToast(`ファイル「${file.name}」を読み込みました`);
+            };
+            reader.readAsText(file);
+        }
+    });
+
+    document.getElementById('saveHtmlButton').addEventListener('click', () => {
+        const content = state.mode === 'md-to-html' ? elements.rightOutput.value : elements.leftInput.value;
+        const blob = new Blob([content], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'converted.html';
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('HTMLファイルを保存しました');
+    });
+
+    document.getElementById('saveMarkdownButton').addEventListener('click', () => {
+        const content = state.mode === 'html-to-md' ? elements.rightOutput.value : elements.leftInput.value;
+        const blob = new Blob([content], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'converted.md';
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Markdownファイルを保存しました');
+    });
+
+    document.getElementById('copyHtmlButton').addEventListener('click', async () => {
+        const content = state.mode === 'md-to-html' ? elements.rightOutput.value : elements.leftInput.value;
+        if (content) {
+            try {
+                await navigator.clipboard.writeText(content);
+                showToast('HTMLをコピーしました');
+            } catch (err) {
+                const textarea = state.mode === 'md-to-html' ? elements.rightOutput : elements.leftInput;
+                textarea.select();
+                document.execCommand('copy');
+                showToast('HTMLをコピーしました');
+            }
+        }
+    });
+
+    document.getElementById('copyMarkdownButton').addEventListener('click', async () => {
+        const content = state.mode === 'html-to-md' ? elements.rightOutput.value : elements.leftInput.value;
+        if (content) {
+            try {
+                await navigator.clipboard.writeText(content);
+                showToast('Markdownをコピーしました');
+            } catch (err) {
+                const textarea = state.mode === 'html-to-md' ? elements.rightOutput : elements.leftInput;
+                textarea.select();
+                document.execCommand('copy');
+                showToast('Markdownをコピーしました');
+            }
+        }
+    });
+
+    document.getElementById('clearButton').addEventListener('click', () => {
+        if (confirm('すべての内容をクリアしますか？')) {
+            elements.leftInput.value = '';
+            elements.rightOutput.value = '';
+            updateStats();
+            showToast('クリアしました');
+        }
+    });
+
+    document.getElementById('historyToggle').addEventListener('click', () => {
+        elements.historyPanel.classList.toggle('open');
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) {
+            switch(e.key) {
+                case 's':
+                    e.preventDefault();
+                    document.getElementById('saveMarkdownButton').click();
+                    break;
+                case 'o':
+                    e.preventDefault();
+                    document.getElementById('loadButton').click();
+                    break;
+                case 'k':
+                    e.preventDefault();
+                    document.getElementById('clearButton').click();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    convert();
+                    showToast('変換を実行しました');
+                    break;
+            }
+        }
+    });
+
+    // Initialize
+    updateStats();
+    showToast('HTML ⇄ Markdown コンバーターへようこそ！');
   </script>
 </body>
 
