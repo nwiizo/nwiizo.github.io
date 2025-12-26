@@ -30,7 +30,9 @@ this.style.transform='scale(1) rotate(0deg) skew(0deg)';" />
 
 ## 👨‍💻 About Me
 
-I work as a Software Developer at [@3-shake Inc.](https://3-shake.com/) while serving as a Technical Advisor for several companies. I've also got this quirky hobby as a "Gravure Digger" - just one of the many interesting paths I've explored in tech over the years! 
+I work as a Software Developer at [@3-shake Inc.](https://3-shake.com/) while serving as a Technical Advisor for several companies. I also take on freelance programming work - my expertise lies in backend and infrastructure, though I can fumble my way through frontend when absolutely necessary. If my blog "じゃあ、おうちで学べる" has ever saved your day (or your deadline), feel free to reach out!
+
+I've also got this quirky hobby as a "Gravure Digger" - just one of the many interesting paths I've explored in tech over the years! 
 
 Between writing code, consulting tech teams, and devouring books across all genres, I somehow find time to practice martial arts too. You might spot me speaking at tech conferences, translating documentation, or sharing stories on my blog. It's definitely not your conventional tech career path, but I'm loving every moment of it! ✨
 
