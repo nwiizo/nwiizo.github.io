@@ -1450,6 +1450,9 @@
             <div class="comparison-diff-label">1日たった0.5%の差が1年後には...</div>
             <div class="comparison-diff-value" id="compDiff">6.1倍の差</div>
           </div>
+          <div class="comparison-chart-container" style="grid-column: span 2; height: 250px; margin-top: 20px;">
+            <canvas id="comparisonChart"></canvas>
+          </div>
         </div>
       </div>
 
@@ -1817,6 +1820,7 @@
                 currentTab: 'skill',
                 skillChart: null,
                 assetChart: null,
+                comparisonChart: null,
                 previousMultiple: 1,
                 isDarkMode: false
             };
@@ -1909,6 +1913,46 @@
 
             const diff = Math.abs(multipleA - multipleB);
             document.getElementById('compDiff').textContent = diff.toFixed(1) + '倍の差';
+
+            this.updateComparisonChart(rateA / 100, rateB / 100);
+        }
+
+        updateComparisonChart(rateA, rateB) {
+            const canvas = document.getElementById('comparisonChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (this.state.comparisonChart) this.state.comparisonChart.destroy();
+
+            const labels = [];
+            const dataA = [];
+            const dataB = [];
+            const days = 365;
+            const step = Math.max(1, Math.floor(days / 50));
+
+            for (let i = 0; i <= days; i += step) {
+                labels.push(i + '日');
+                dataA.push(100 * Math.pow(1 + rateA, i));
+                dataB.push(100 * Math.pow(1 + rateB, i));
+            }
+
+            if (typeof Chart !== 'undefined') {
+                this.state.comparisonChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [
+                            { label: 'シナリオA', data: dataA, borderColor: '#3498db', backgroundColor: 'rgba(52,152,219,0.1)', fill: true, tension: 0.4, pointRadius: 1 },
+                            { label: 'シナリオB', data: dataB, borderColor: '#2ecc71', backgroundColor: 'rgba(46,204,113,0.1)', fill: true, tension: 0.4, pointRadius: 1 }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: true, position: 'top' } },
+                        scales: { y: { beginAtZero: true, ticks: { callback: (v) => this.formatNumber(v) } } }
+                    }
+                });
+            }
         }
 
         setupLawCards() {
