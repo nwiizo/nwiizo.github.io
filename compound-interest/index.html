@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>複利の力 - 習慣が人生を変える</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+    :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --warning-color: #f39c12;
+        --danger-color: #e74c3c;
+        --purple-color: #9b59b6;
+        --dark-color: #2c3e50;
+        --light-bg: #f7f9fc;
+        --card-bg: #ffffff;
+        --text-primary: #2c3e50;
+        --text-secondary: #7f8c8d;
+        --border-color: #e0e6ed;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: var(--light-bg);
+        color: var(--text-primary);
+        line-height: 1.6;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 40px;
+        transition: all 0.3s ease;
+    }
+
+    .container:hover {
+        box-shadow: var(--shadow-hover);
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .subtitle {
+        color: var(--text-secondary);
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .tab-container {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin-bottom: 30px;
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .tab-btn {
+        padding: 15px 30px;
+        font-size: 16px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-secondary);
+        position: relative;
+    }
+
+    .tab-btn:hover {
+        color: var(--primary-color);
+    }
+
+    .tab-btn.active {
+        color: var(--primary-color);
+    }
+
+    .tab-btn.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 3px 3px 0 0;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* Atomic Habits Quote Banner */
+    .quote-banner {
+        background: linear-gradient(135deg, var(--purple-color), var(--primary-color));
+        color: white;
+        padding: 35px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .quote-banner::before {
+        content: '"';
+        position: absolute;
+        top: -20px;
+        left: 20px;
+        font-size: 120px;
+        opacity: 0.1;
+        font-family: Georgia, serif;
+    }
+
+    .quote-banner h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .quote-banner .quote-source {
+        font-size: 14px;
+        opacity: 0.9;
+        font-style: italic;
+    }
+
+    /* Core Concept Section */
+    .concept-section {
+        background: var(--light-bg);
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
+    .concept-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .concept-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .concept-card {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid var(--primary-color);
+        transition: all 0.3s ease;
+    }
+
+    .concept-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+    }
+
+    .concept-card.positive {
+        border-left-color: var(--secondary-color);
+    }
+
+    .concept-card.negative {
+        border-left-color: var(--danger-color);
+    }
+
+    .concept-card.neutral {
+        border-left-color: var(--warning-color);
+    }
+
+    .concept-card-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .concept-card-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+    }
+
+    .concept-card-desc {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    .concept-card-formula {
+        margin-top: 12px;
+        padding: 10px;
+        background: var(--light-bg);
+        border-radius: 6px;
+        font-family: 'Monaco', monospace;
+        font-size: 13px;
+        color: var(--primary-color);
+        text-align: center;
+    }
+
+    /* Valley of Disappointment */
+    .valley-section {
+        background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), rgba(155, 89, 182, 0.05));
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        border: 2px solid var(--border-color);
+    }
+
+    .valley-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .valley-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .valley-text {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.8;
+    }
+
+    .valley-text strong {
+        color: var(--text-primary);
+    }
+
+    .valley-text .highlight {
+        background: linear-gradient(transparent 60%, rgba(155, 89, 182, 0.2) 60%);
+        padding: 0 2px;
+    }
+
+    .valley-chart {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        height: 200px;
+    }
+
+    /* Input Sections */
+    .input-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .input-group {
+        background: var(--light-bg);
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .input-group-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .slider-field {
+        margin-bottom: 20px;
+    }
+
+    .slider-field:last-child {
+        margin-bottom: 0;
+    }
+
+    .slider-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .slider-header label {
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    .slider-value {
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 18px;
+    }
+
+    .slider-input {
+        width: 100%;
+        -webkit-appearance: none;
+        height: 8px;
+        border-radius: 4px;
+        background: var(--border-color);
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .slider-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 6px rgba(52, 152, 219, 0.4);
+    }
+
+    .slider-input::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+    }
+
+    .input-field {
+        margin-bottom: 15px;
+    }
+
+    .input-field label {
+        display: block;
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+        font-weight: 500;
+    }
+
+    .input-field input,
+    .input-field select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: inherit;
+        transition: all 0.3s ease;
+        background: white;
+    }
+
+    .input-field input:focus,
+    .input-field select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    .input-with-unit {
+        position: relative;
+    }
+
+    .input-with-unit input {
+        padding-right: 50px;
+    }
+
+    .input-unit {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    /* Habit Scenarios */
+    .scenarios-section {
+        margin-bottom: 30px;
+    }
+
+    .scenarios-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .scenarios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+    }
+
+    .scenario-btn {
+        padding: 18px;
+        border: 2px solid var(--border-color);
+        background: white;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .scenario-btn:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+
+    .scenario-btn.active {
+        border-color: var(--primary-color);
+        background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(155, 89, 182, 0.05));
+    }
+
+    .scenario-btn.active::after {
+        content: '✓';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .scenario-icon {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .scenario-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 5px;
+        font-size: 15px;
+    }
+
+    .scenario-desc {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+    }
+
+    .scenario-result {
+        font-size: 13px;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .scenario-result.positive {
+        background: rgba(46, 204, 113, 0.1);
+        color: var(--secondary-color);
+    }
+
+    .scenario-result.negative {
+        background: rgba(231, 76, 60, 0.1);
+        color: var(--danger-color);
+    }
+
+    /* Results Grid */
+    .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .result-card {
+        background: var(--light-bg);
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .result-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--primary-color);
+        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+    }
+
+    .result-card.highlight {
+        background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(52, 152, 219, 0.1));
+        border-color: var(--purple-color);
+    }
+
+    .result-card.growth {
+        background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(52, 152, 219, 0.1));
+        border-color: var(--secondary-color);
+    }
+
+    .result-icon {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .result-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+
+    .result-card.highlight .result-value {
+        color: var(--purple-color);
+    }
+
+    .result-card.growth .result-value {
+        color: var(--secondary-color);
+    }
+
+    .result-label {
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    .result-sub {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-top: 5px;
+    }
+
+    /* Chart Section */
+    .chart-section {
+        background: var(--light-bg);
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
+    .chart-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chart-container {
+        position: relative;
+        height: 350px;
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .chart-legend {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: var(--text-secondary);
+    }
+
+    .legend-color {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+    }
+
+    /* 4 Laws Section */
+    .laws-section {
+        background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(46, 204, 113, 0.05));
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
+    .laws-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .laws-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 15px;
+    }
+
+    .law-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .law-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+    }
+
+    .law-number {
+        width: 36px;
+        height: 36px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin: 0 auto 12px;
+    }
+
+    .law-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+    }
+
+    .law-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+    }
+
+    /* Insight Section */
+    .insight-section {
+        background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(155, 89, 182, 0.05));
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        border-left: 4px solid var(--purple-color);
+    }
+
+    .insight-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .insight-list {
+        list-style: none;
+    }
+
+    .insight-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .insight-list li:last-child {
+        border-bottom: none;
+    }
+
+    .insight-list li span:first-child {
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #27ae60;
+        transform: translateY(-2px);
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+
+    /* Asset Tab Styles */
+    .calculate-btn {
+        width: 100%;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .calculate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+    }
+
+    .table-section {
+        background: var(--light-bg);
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
+    .table-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        background: white;
+        border-radius: 8px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 12px 15px;
+        text-align: right;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+        background: var(--light-bg);
+        font-weight: 600;
+        color: var(--text-primary);
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .data-table th:first-child,
+    .data-table td:first-child {
+        text-align: center;
+    }
+
+    .data-table tr:hover {
+        background: rgba(52, 152, 219, 0.05);
+    }
+
+    .data-table .highlight-row {
+        background: rgba(46, 204, 113, 0.1);
+    }
+
+    .toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        padding: 16px 24px;
+        background: var(--dark-color);
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1001;
+        font-size: 14px;
+    }
+
+    .toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        .input-section {
+            grid-template-columns: 1fr;
+        }
+
+        .results-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .chart-container {
+            height: 250px;
+        }
+
+        .valley-content {
+            grid-template-columns: 1fr;
+        }
+
+        .scenarios-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--light-bg);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--text-secondary);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>
+        <span>📈</span>
+        複利の力
+      </h1>
+      <p class="subtitle">習慣は自己改善の複利である - Atomic Habits</p>
+    </div>
+
+    <div class="tab-container">
+      <button class="tab-btn active" data-tab="skill">
+        <span>🚀</span> 習慣の力
+      </button>
+      <button class="tab-btn" data-tab="asset">
+        <span>💰</span> 資産運用
+      </button>
+    </div>
+
+    <!-- 習慣の力タブ -->
+    <div class="tab-content active" id="skillTab">
+      <div class="quote-banner">
+        <h2>毎日1%良くなれば、1年後には37倍良くなる。<br>毎日1%悪くなれば、1年後にはほぼゼロになる。</h2>
+        <p class="quote-source">— James Clear『Atomic Habits』より</p>
+      </div>
+
+      <!-- Core Concepts -->
+      <div class="concept-section">
+        <div class="concept-title">
+          <span>💡</span> 複利効果の本質
+        </div>
+        <div class="concept-grid">
+          <div class="concept-card positive">
+            <div class="concept-card-icon">📈</div>
+            <div class="concept-card-title">1%の改善を毎日続ける</div>
+            <div class="concept-card-desc">小さな改善は目立たないが、時間とともに指数関数的に成長する。最初は見えなくても、やがて大きな差になる。</div>
+            <div class="concept-card-formula">1.01^365 = 37.78</div>
+          </div>
+          <div class="concept-card negative">
+            <div class="concept-card-icon">📉</div>
+            <div class="concept-card-title">1%の悪化を毎日続ける</div>
+            <div class="concept-card-desc">小さな悪習慣も複利で蓄積する。毎日少しずつ衰退すれば、1年後にはほとんど何も残らない。</div>
+            <div class="concept-card-formula">0.99^365 = 0.03</div>
+          </div>
+          <div class="concept-card neutral">
+            <div class="concept-card-icon">⏳</div>
+            <div class="concept-card-title">72の法則</div>
+            <div class="concept-card-desc">2倍になるまでの期間は、72を成長率で割れば分かる。1%なら72日、2%なら36日で2倍になる。</div>
+            <div class="concept-card-formula">倍になる日数 = 72 ÷ 成長率(%)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valley of Disappointment -->
+      <div class="valley-section">
+        <div class="valley-title">
+          <span>🏔️</span> 失望の谷（Valley of Disappointment）
+        </div>
+        <div class="valley-content">
+          <div class="valley-text">
+            <p><strong>努力の成果は直線的に現れない。</strong></p>
+            <p style="margin-top: 12px;">成長曲線は最初は緩やかで、ある時点から急激に上昇する。多くの人はこの<span class="highlight">「失望の谷」</span>で諦めてしまう。</p>
+            <p style="margin-top: 12px;">あなたが期待するのは直線的な成長だが、実際の成長は指数関数的。<strong>最初の数ヶ月は目に見える成果がなくても、それは「潜在能力の蓄積期間」</strong>なのだ。</p>
+            <p style="margin-top: 12px; padding: 12px; background: white; border-radius: 8px; font-weight: 500;">
+              🎯 ブレイクスルーは、突然ではなく<strong>蓄積された努力の結果</strong>として訪れる
+            </p>
+          </div>
+          <div class="valley-chart">
+            <canvas id="valleyChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenarios -->
+      <div class="scenarios-section">
+        <div class="scenarios-title">
+          <span>🎭</span> シナリオを選んでシミュレーション
+        </div>
+        <div class="scenarios-grid">
+          <button class="scenario-btn active" data-preset="daily1">
+            <div class="scenario-icon">📚</div>
+            <div class="scenario-name">毎日1%成長</div>
+            <div class="scenario-desc">毎日少しずつ学習を続ける</div>
+            <div class="scenario-result positive">1年後: 37.8倍</div>
+          </button>
+          <button class="scenario-btn" data-preset="daily05">
+            <div class="scenario-icon">🎯</div>
+            <div class="scenario-name">毎日0.5%成長</div>
+            <div class="scenario-desc">忙しくても最低限続ける</div>
+            <div class="scenario-result positive">1年後: 6.2倍</div>
+          </button>
+          <button class="scenario-btn" data-preset="daily01">
+            <div class="scenario-icon">🐢</div>
+            <div class="scenario-name">毎日0.1%成長</div>
+            <div class="scenario-desc">超小さな一歩を毎日</div>
+            <div class="scenario-result positive">1年後: 1.44倍</div>
+          </button>
+          <button class="scenario-btn" data-preset="decline">
+            <div class="scenario-icon">📉</div>
+            <div class="scenario-name">毎日1%衰退</div>
+            <div class="scenario-desc">何もしないとどうなるか</div>
+            <div class="scenario-result negative">1年後: 3%に</div>
+          </button>
+          <button class="scenario-btn" data-preset="weekly">
+            <div class="scenario-icon">📅</div>
+            <div class="scenario-name">週1で5%成長</div>
+            <div class="scenario-desc">週末に集中的に取り組む</div>
+            <div class="scenario-result positive">1年後: 12.6倍</div>
+          </button>
+          <button class="scenario-btn" data-preset="sprint">
+            <div class="scenario-icon">🏃</div>
+            <div class="scenario-name">30日チャレンジ</div>
+            <div class="scenario-desc">1ヶ月集中で2%成長</div>
+            <div class="scenario-result positive">30日後: 1.81倍</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Section -->
+      <div class="input-section">
+        <div class="input-group">
+          <div class="input-group-title">
+            <span>⚡</span> 成長パラメータ
+          </div>
+          <div class="slider-field">
+            <div class="slider-header">
+              <label>日々の成長率</label>
+              <span class="slider-value" id="skillRateValue">1.0%</span>
+            </div>
+            <input type="range" class="slider-input" id="skillRate" value="1.0" min="-2" max="5" step="0.1">
+          </div>
+          <div class="slider-field">
+            <div class="slider-header">
+              <label>継続日数</label>
+              <span class="slider-value" id="skillDaysValue">365日</span>
+            </div>
+            <input type="range" class="slider-input" id="skillDays" value="365" min="1" max="1095" step="1">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-title">
+            <span>🎮</span> 初期設定
+          </div>
+          <div class="input-field">
+            <label for="initialSkill">初期スキルレベル</label>
+            <input type="number" id="initialSkill" value="100" min="1" step="1">
+          </div>
+          <div class="input-field">
+            <label for="skillUnit">単位（任意）</label>
+            <input type="text" id="skillUnit" value="ポイント" placeholder="例: ポイント、レベル、習熟度">
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="results-grid" id="skillResults">
+        <div class="result-card highlight">
+          <div class="result-icon">🏆</div>
+          <div class="result-value" id="finalSkill">3,778</div>
+          <div class="result-label">最終スキルレベル</div>
+        </div>
+        <div class="result-card growth">
+          <div class="result-icon">📈</div>
+          <div class="result-value" id="growthMultiple">37.8x</div>
+          <div class="result-label">成長倍率</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">📊</div>
+          <div class="result-value" id="totalGrowth">+3,678</div>
+          <div class="result-label">総成長量</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">⏰</div>
+          <div class="result-value" id="doublingTime">70日</div>
+          <div class="result-label">2倍になるまで</div>
+          <div class="result-sub">72の法則</div>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="chart-section">
+        <div class="chart-title">
+          <span>📉</span> 成長曲線 - 複利 vs 線形
+        </div>
+        <div class="chart-container">
+          <canvas id="skillChart"></canvas>
+        </div>
+        <div class="chart-legend" id="skillLegend">
+          <div class="legend-item">
+            <div class="legend-color" style="background: #9b59b6;"></div>
+            <span>複利成長（実際の成長）</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: #bdc3c7;"></div>
+            <span>線形成長（期待する成長）</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Laws of Behavior Change -->
+      <div class="laws-section">
+        <div class="laws-title">🔄 行動変容の4つの法則（Atomic Habits）</div>
+        <div class="laws-grid">
+          <div class="law-card">
+            <div class="law-number">1</div>
+            <div class="law-title">明確にする（Make it Obvious）</div>
+            <div class="law-desc">習慣のきっかけを目に見える場所に置く。いつ・どこで・何をするか具体化する。</div>
+          </div>
+          <div class="law-card">
+            <div class="law-number">2</div>
+            <div class="law-title">魅力的にする（Make it Attractive）</div>
+            <div class="law-desc">やりたいことと組み合わせる。習慣を楽しいものと結びつける。</div>
+          </div>
+          <div class="law-card">
+            <div class="law-number">3</div>
+            <div class="law-title">簡単にする（Make it Easy）</div>
+            <div class="law-desc">2分ルール：まずは2分だけやる。障壁を減らし、始めやすくする。</div>
+          </div>
+          <div class="law-card">
+            <div class="law-number">4</div>
+            <div class="law-title">満足できるものにする（Make it Satisfying）</div>
+            <div class="law-desc">即座に報酬を与える。進捗を可視化してモチベーションを維持する。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="insight-section">
+        <div class="insight-title">
+          <span>💡</span> インサイト
+        </div>
+        <ul class="insight-list" id="insightList">
+          <li><span>🎯</span> <span>毎日1%の成長を365日続けると、約37.8倍になります</span></li>
+          <li><span>⚠️</span> <span>逆に毎日1%衰退すると、1年後には初期値の約3%まで落ちます</span></li>
+          <li><span>🔑</span> <span>重要なのは「継続」。一度にたくさんより、毎日少しずつ。</span></li>
+        </ul>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-secondary" id="copySkillResultBtn">
+          <span>📋</span> 結果をコピー
+        </button>
+        <button class="btn btn-outline" id="resetSkillBtn">
+          <span>🔄</span> リセット
+        </button>
+      </div>
+    </div>
+
+    <!-- 資産運用タブ -->
+    <div class="tab-content" id="assetTab">
+      <div class="input-section">
+        <div class="input-group">
+          <div class="input-group-title">
+            <span>💰</span> 初期投資
+          </div>
+          <div class="input-field">
+            <label for="principal">元本（初期投資額）</label>
+            <div class="input-with-unit">
+              <input type="number" id="principal" value="1000000" min="0" step="10000">
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+          <div class="input-field">
+            <label for="monthly">毎月の積立額</label>
+            <div class="input-with-unit">
+              <input type="number" id="monthly" value="30000" min="0" step="1000">
+              <span class="input-unit">円</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-group-title">
+            <span>📅</span> 運用条件
+          </div>
+          <div class="slider-field">
+            <div class="slider-header">
+              <label>年利（利回り）</label>
+              <span class="slider-value" id="assetRateValue">5%</span>
+            </div>
+            <input type="range" class="slider-input" id="assetRate" value="5" min="0.1" max="15" step="0.1">
+          </div>
+          <div class="slider-field">
+            <div class="slider-header">
+              <label>運用期間</label>
+              <span class="slider-value" id="assetYearsValue">20年</span>
+            </div>
+            <input type="range" class="slider-input" id="assetYears" value="20" min="1" max="50" step="1">
+          </div>
+          <div class="input-field">
+            <label for="frequency">複利計算の頻度</label>
+            <select id="frequency">
+              <option value="1">年1回</option>
+              <option value="2">半年ごと（年2回）</option>
+              <option value="4">四半期ごと（年4回）</option>
+              <option value="12" selected>毎月（年12回）</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button class="calculate-btn" id="calculateAssetBtn">
+        <span>📊</span> シミュレーション実行
+      </button>
+
+      <div class="results-grid" id="assetResults">
+        <div class="result-card highlight">
+          <div class="result-icon">💎</div>
+          <div class="result-value" id="finalAmount">0円</div>
+          <div class="result-label">最終資産額</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">💵</div>
+          <div class="result-value" id="totalInvested">0円</div>
+          <div class="result-label">総投資額</div>
+        </div>
+        <div class="result-card growth">
+          <div class="result-icon">📈</div>
+          <div class="result-value" id="totalInterest">0円</div>
+          <div class="result-label">運用益</div>
+        </div>
+        <div class="result-card">
+          <div class="result-icon">🎯</div>
+          <div class="result-value" id="returnRate">0%</div>
+          <div class="result-label">収益率</div>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-title">
+          <span>📉</span> 資産推移グラフ
+        </div>
+        <div class="chart-container">
+          <canvas id="assetChart"></canvas>
+        </div>
+        <div class="chart-legend" id="assetLegend">
+          <div class="legend-item">
+            <div class="legend-color" style="background: #3498db;"></div>
+            <span>総資産額</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: #2ecc71;"></div>
+            <span>投資元本</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color" style="background: #e74c3c;"></div>
+            <span>運用益</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-section">
+        <div class="table-title">
+          <span>📋 年次詳細データ</span>
+          <button class="btn btn-outline" id="exportCsvBtn" style="padding: 8px 16px; font-size: 14px;">
+            <span>💾</span> CSVエクスポート
+          </button>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>年</th>
+                <th>年初残高</th>
+                <th>積立額</th>
+                <th>利息</th>
+                <th>年末残高</th>
+                <th>累計投資額</th>
+                <th>累計利息</th>
+              </tr>
+            </thead>
+            <tbody id="assetTableBody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-secondary" id="copyAssetResultBtn">
+          <span>📋</span> 結果をコピー
+        </button>
+        <button class="btn btn-outline" id="resetAssetBtn">
+          <span>🔄</span> リセット
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    class CompoundGrowthApp {
+        constructor() {
+            this.state = {
+                currentTab: 'skill',
+                skillChart: null,
+                assetChart: null,
+                valleyChart: null
+            };
+
+            this.init();
+        }
+
+        init() {
+            this.setupTabListeners();
+            this.setupSkillListeners();
+            this.setupAssetListeners();
+            this.calculateSkillGrowth();
+            this.calculateAssetGrowth();
+            this.drawValleyChart();
+            this.showToast('習慣の力を可視化しよう！');
+        }
+
+        setupTabListeners() {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tab = btn.getAttribute('data-tab');
+                    this.switchTab(tab);
+                });
+            });
+        }
+
+        switchTab(tab) {
+            this.state.currentTab = tab;
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === tab);
+            });
+
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.getElementById(tab + 'Tab').classList.add('active');
+
+            if (tab === 'skill') {
+                this.calculateSkillGrowth();
+                this.drawValleyChart();
+            } else {
+                this.calculateAssetGrowth();
+            }
+        }
+
+        setupSkillListeners() {
+            const skillRate = document.getElementById('skillRate');
+            const skillDays = document.getElementById('skillDays');
+            const initialSkill = document.getElementById('initialSkill');
+            const skillUnit = document.getElementById('skillUnit');
+
+            skillRate.addEventListener('input', () => {
+                document.getElementById('skillRateValue').textContent = skillRate.value + '%';
+                this.calculateSkillGrowth();
+            });
+
+            skillDays.addEventListener('input', () => {
+                document.getElementById('skillDaysValue').textContent = skillDays.value + '日';
+                this.calculateSkillGrowth();
+            });
+
+            initialSkill.addEventListener('input', () => this.calculateSkillGrowth());
+            skillUnit.addEventListener('input', () => this.calculateSkillGrowth());
+
+            document.querySelectorAll('.scenario-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    this.applyPreset(btn.getAttribute('data-preset'));
+                    document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            document.getElementById('copySkillResultBtn').addEventListener('click', () => this.copySkillResults());
+            document.getElementById('resetSkillBtn').addEventListener('click', () => this.resetSkill());
+        }
+
+        applyPreset(preset) {
+            const presets = {
+                'daily1': { rate: 1.0, days: 365 },
+                'daily05': { rate: 0.5, days: 365 },
+                'daily01': { rate: 0.1, days: 365 },
+                'decline': { rate: -1.0, days: 365 },
+                'weekly': { rate: 5.0, days: 52 },
+                'sprint': { rate: 2.0, days: 30 }
+            };
+
+            const p = presets[preset];
+            if (p) {
+                document.getElementById('skillRate').value = p.rate;
+                document.getElementById('skillDays').value = p.days;
+                document.getElementById('skillRateValue').textContent = p.rate + '%';
+                document.getElementById('skillDaysValue').textContent = p.days + '日';
+                this.calculateSkillGrowth();
+            }
+        }
+
+        calculateSkillGrowth() {
+            const rate = parseFloat(document.getElementById('skillRate').value) / 100;
+            const days = parseInt(document.getElementById('skillDays').value);
+            const initial = parseFloat(document.getElementById('initialSkill').value) || 100;
+
+            const finalSkill = initial * Math.pow(1 + rate, days);
+            const growthMultiple = finalSkill / initial;
+            const totalGrowth = finalSkill - initial;
+            const doublingTime = rate > 0 ? Math.ceil(72 / (rate * 100)) : '∞';
+
+            document.getElementById('finalSkill').textContent = this.formatNumber(finalSkill);
+            document.getElementById('growthMultiple').textContent = growthMultiple.toFixed(1) + 'x';
+            document.getElementById('totalGrowth').textContent = (totalGrowth >= 0 ? '+' : '') + this.formatNumber(totalGrowth);
+            document.getElementById('doublingTime').textContent = doublingTime === '∞' ? '∞' : doublingTime + '日';
+
+            this.updateInsights(rate, days, growthMultiple);
+            this.updateSkillChart(rate, days, initial);
+        }
+
+        updateInsights(rate, days, multiple) {
+            const insights = [];
+
+            if (rate > 0) {
+                insights.push({
+                    icon: '🎯',
+                    text: `毎日${(rate * 100).toFixed(1)}%の成長を${days}日続けると、約${multiple.toFixed(1)}倍になります`
+                });
+
+                const oppositeMultiple = Math.pow(1 - rate, days);
+                insights.push({
+                    icon: '⚠️',
+                    text: `逆に毎日${(rate * 100).toFixed(1)}%衰退すると、${days}日後には初期値の約${(oppositeMultiple * 100).toFixed(1)}%まで落ちます`
+                });
+
+                const halfwayMultiple = Math.pow(1 + rate, Math.floor(days / 2));
+                insights.push({
+                    icon: '📊',
+                    text: `途中経過: ${Math.floor(days / 2)}日目で約${halfwayMultiple.toFixed(1)}倍（最終の${(halfwayMultiple / multiple * 100).toFixed(0)}%）— これが「失望の谷」です`
+                });
+            } else if (rate < 0) {
+                insights.push({
+                    icon: '📉',
+                    text: `毎日${Math.abs(rate * 100).toFixed(1)}%衰退すると、${days}日後には初期値の約${(multiple * 100).toFixed(1)}%になります`
+                });
+
+                const recoveryMultiple = Math.pow(1 + Math.abs(rate), days);
+                insights.push({
+                    icon: '💪',
+                    text: `逆に毎日${Math.abs(rate * 100).toFixed(1)}%成長すれば、${days}日で${recoveryMultiple.toFixed(1)}倍になれます`
+                });
+            }
+
+            insights.push({
+                icon: '🔑',
+                text: '「習慣は自己改善の複利である」— 小さな選択の積み重ねが、あなたの未来を形作る'
+            });
+
+            const insightList = document.getElementById('insightList');
+            insightList.innerHTML = insights.map(i =>
+                `<li><span>${i.icon}</span> <span>${i.text}</span></li>`
+            ).join('');
+        }
+
+        drawValleyChart() {
+            const canvas = document.getElementById('valleyChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.parentElement.clientWidth - 40;
+            const height = 160;
+            canvas.width = width;
+            canvas.height = height;
+
+            ctx.clearRect(0, 0, width, height);
+
+            const padding = 30;
+            const graphWidth = width - padding * 2;
+            const graphHeight = height - padding * 2;
+
+            // Draw axes
+            ctx.strokeStyle = '#e0e6ed';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.lineTo(width - padding, height - padding);
+            ctx.stroke();
+
+            // Expected (linear) growth
+            ctx.strokeStyle = '#bdc3c7';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(padding, height - padding);
+            ctx.lineTo(width - padding, padding);
+            ctx.stroke();
+
+            // Actual (exponential) growth
+            ctx.strokeStyle = '#9b59b6';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            const points = 50;
+            for (let i = 0; i <= points; i++) {
+                const x = padding + (graphWidth * i / points);
+                const progress = i / points;
+                const expValue = Math.pow(1.01, progress * 365) - 1;
+                const normalizedValue = expValue / (Math.pow(1.01, 365) - 1);
+                const y = height - padding - (normalizedValue * graphHeight);
+
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Valley area annotation
+            ctx.fillStyle = 'rgba(231, 76, 60, 0.1)';
+            ctx.beginPath();
+            ctx.moveTo(padding + graphWidth * 0.1, height - padding);
+            ctx.lineTo(padding + graphWidth * 0.5, height - padding);
+            ctx.lineTo(padding + graphWidth * 0.5, height - padding - graphHeight * 0.2);
+            ctx.lineTo(padding + graphWidth * 0.1, height - padding - graphHeight * 0.05);
+            ctx.closePath();
+            ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#7f8c8d';
+            ctx.font = '11px Noto Sans JP';
+            ctx.textAlign = 'center';
+            ctx.fillText('時間', width / 2, height - 5);
+            ctx.save();
+            ctx.translate(12, height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('成長', 0, 0);
+            ctx.restore();
+
+            ctx.fillStyle = '#e74c3c';
+            ctx.font = '10px Noto Sans JP';
+            ctx.fillText('失望の谷', padding + graphWidth * 0.3, height - padding - graphHeight * 0.05);
+        }
+
+        updateSkillChart(rate, days, initial) {
+            const ctx = document.getElementById('skillChart').getContext('2d');
+
+            if (this.state.skillChart) {
+                this.state.skillChart.destroy();
+            }
+
+            const labels = [];
+            const compoundData = [];
+            const linearData = [];
+            const dailyGrowthAmount = initial * rate;
+
+            for (let i = 0; i <= days; i += Math.max(1, Math.floor(days / 50))) {
+                labels.push(i + '日');
+                compoundData.push(initial * Math.pow(1 + rate, i));
+                linearData.push(initial + dailyGrowthAmount * i);
+            }
+
+            if (typeof Chart !== 'undefined') {
+                this.state.skillChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: '複利成長',
+                                data: compoundData,
+                                borderColor: '#9b59b6',
+                                backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 2
+                            },
+                            {
+                                label: '線形成長',
+                                data: linearData,
+                                borderColor: '#bdc3c7',
+                                backgroundColor: 'rgba(189, 195, 199, 0.1)',
+                                fill: true,
+                                tension: 0,
+                                pointRadius: 0,
+                                borderDash: [5, 5]
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => context.dataset.label + ': ' + this.formatNumber(context.raw)
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: (value) => this.formatNumber(value)
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        setupAssetListeners() {
+            const assetRate = document.getElementById('assetRate');
+            const assetYears = document.getElementById('assetYears');
+
+            assetRate.addEventListener('input', () => {
+                document.getElementById('assetRateValue').textContent = assetRate.value + '%';
+                this.calculateAssetGrowth();
+            });
+
+            assetYears.addEventListener('input', () => {
+                document.getElementById('assetYearsValue').textContent = assetYears.value + '年';
+                this.calculateAssetGrowth();
+            });
+
+            ['principal', 'monthly', 'frequency'].forEach(id => {
+                document.getElementById(id).addEventListener('input', () => this.calculateAssetGrowth());
+            });
+
+            document.getElementById('calculateAssetBtn').addEventListener('click', () => {
+                this.calculateAssetGrowth();
+                this.showToast('計算が完了しました');
+            });
+
+            document.getElementById('copyAssetResultBtn').addEventListener('click', () => this.copyAssetResults());
+            document.getElementById('resetAssetBtn').addEventListener('click', () => this.resetAsset());
+            document.getElementById('exportCsvBtn').addEventListener('click', () => this.exportCSV());
+        }
+
+        calculateAssetGrowth() {
+            const principal = parseFloat(document.getElementById('principal').value) || 0;
+            const monthly = parseFloat(document.getElementById('monthly').value) || 0;
+            const annualRate = parseFloat(document.getElementById('assetRate').value) / 100;
+            const years = parseInt(document.getElementById('assetYears').value) || 0;
+            const frequency = parseInt(document.getElementById('frequency').value);
+
+            const yearlyData = [];
+            let balance = principal;
+            let totalInvested = principal;
+            let totalInterest = 0;
+
+            const periodicRate = annualRate / frequency;
+            const monthlyToPeriodicRatio = 12 / frequency;
+
+            for (let year = 1; year <= years; year++) {
+                const startBalance = balance;
+                let yearlyInvestment = 0;
+                let yearlyInterest = 0;
+
+                for (let period = 0; period < frequency; period++) {
+                    const contribution = monthly * monthlyToPeriodicRatio;
+                    balance += contribution;
+                    yearlyInvestment += contribution;
+                    totalInvested += contribution;
+
+                    const interest = balance * periodicRate;
+                    balance += interest;
+                    yearlyInterest += interest;
+                    totalInterest += interest;
+                }
+
+                yearlyData.push({
+                    year,
+                    startBalance: Math.round(startBalance),
+                    investment: Math.round(yearlyInvestment),
+                    interest: Math.round(yearlyInterest),
+                    endBalance: Math.round(balance),
+                    totalInvested: Math.round(totalInvested),
+                    totalInterest: Math.round(totalInterest)
+                });
+            }
+
+            const returnRate = totalInvested > 0 ? ((balance - totalInvested) / totalInvested * 100).toFixed(1) : 0;
+
+            document.getElementById('finalAmount').textContent = this.formatCurrency(Math.round(balance));
+            document.getElementById('totalInvested').textContent = this.formatCurrency(Math.round(totalInvested));
+            document.getElementById('totalInterest').textContent = this.formatCurrency(Math.round(totalInterest));
+            document.getElementById('returnRate').textContent = returnRate + '%';
+
+            this.updateAssetChart(yearlyData, principal);
+            this.updateAssetTable(yearlyData);
+
+            this.state.yearlyData = yearlyData;
+            this.state.assetResults = { finalAmount: balance, totalInvested, totalInterest, returnRate };
+        }
+
+        updateAssetChart(yearlyData, principal) {
+            const ctx = document.getElementById('assetChart').getContext('2d');
+
+            if (this.state.assetChart) {
+                this.state.assetChart.destroy();
+            }
+
+            const labels = ['開始', ...yearlyData.map(d => d.year + '年目')];
+            const totalAssets = [principal, ...yearlyData.map(d => d.endBalance)];
+            const investedAmounts = [principal, ...yearlyData.map(d => d.totalInvested)];
+            const interests = [0, ...yearlyData.map(d => d.totalInterest)];
+
+            if (typeof Chart !== 'undefined') {
+                this.state.assetChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: '総資産額',
+                                data: totalAssets,
+                                borderColor: '#3498db',
+                                backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            },
+                            {
+                                label: '投資元本',
+                                data: investedAmounts,
+                                borderColor: '#2ecc71',
+                                backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            },
+                            {
+                                label: '運用益',
+                                data: interests,
+                                borderColor: '#e74c3c',
+                                backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                                fill: true,
+                                tension: 0.4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => context.dataset.label + ': ' + this.formatCurrency(context.raw)
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: (value) => {
+                                        if (value >= 100000000) return (value / 100000000).toFixed(1) + '億';
+                                        if (value >= 10000) return (value / 10000).toFixed(0) + '万';
+                                        return value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        updateAssetTable(yearlyData) {
+            const tbody = document.getElementById('assetTableBody');
+            tbody.innerHTML = yearlyData.map((data, index) => `
+                <tr class="${index === yearlyData.length - 1 ? 'highlight-row' : ''}">
+                    <td>${data.year}年目</td>
+                    <td>${this.formatCurrency(data.startBalance)}</td>
+                    <td>${this.formatCurrency(data.investment)}</td>
+                    <td>${this.formatCurrency(data.interest)}</td>
+                    <td>${this.formatCurrency(data.endBalance)}</td>
+                    <td>${this.formatCurrency(data.totalInvested)}</td>
+                    <td>${this.formatCurrency(data.totalInterest)}</td>
+                </tr>
+            `).join('');
+        }
+
+        formatNumber(value) {
+            if (Math.abs(value) >= 1000000) {
+                return (value / 1000000).toFixed(2) + 'M';
+            } else if (Math.abs(value) >= 1000) {
+                return (value / 1000).toFixed(1) + 'K';
+            }
+            return Math.round(value).toLocaleString();
+        }
+
+        formatCurrency(value) {
+            if (value >= 100000000) {
+                return (value / 100000000).toFixed(2) + '億円';
+            } else if (value >= 10000) {
+                return Math.round(value / 10000).toLocaleString() + '万円';
+            }
+            return value.toLocaleString() + '円';
+        }
+
+        copySkillResults() {
+            const rate = document.getElementById('skillRate').value;
+            const days = document.getElementById('skillDays').value;
+            const final = document.getElementById('finalSkill').textContent;
+            const multiple = document.getElementById('growthMultiple').textContent;
+
+            const text = `【複利成長シミュレーション結果】
+日々の成長率: ${rate}%
+継続日数: ${days}日
+最終スキルレベル: ${final}
+成長倍率: ${multiple}
+
+「習慣は自己改善の複利である」— Atomic Habits
+毎日の小さな努力が、大きな成長につながります。`;
+
+            this.copyToClipboard(text);
+        }
+
+        copyAssetResults() {
+            const results = this.state.assetResults;
+            if (!results) return;
+
+            const text = `【複利計算結果】
+最終資産額: ${this.formatCurrency(results.finalAmount)}
+総投資額: ${this.formatCurrency(results.totalInvested)}
+運用益: ${this.formatCurrency(results.totalInterest)}
+収益率: ${results.returnRate}%`;
+
+            this.copyToClipboard(text);
+        }
+
+        copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(() => this.showToast('結果をコピーしました'))
+                    .catch(() => this.fallbackCopy(text));
+            } else {
+                this.fallbackCopy(text);
+            }
+        }
+
+        fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                this.showToast('結果をコピーしました');
+            } catch (err) {
+                this.showToast('コピーに失敗しました');
+            }
+            document.body.removeChild(textarea);
+        }
+
+        exportCSV() {
+            const data = this.state.yearlyData;
+            if (!data || !data.length) return;
+
+            let csv = '年,年初残高,積立額,利息,年末残高,累計投資額,累計利息\n';
+            data.forEach(d => {
+                csv += `${d.year},${d.startBalance},${d.investment},${d.interest},${d.endBalance},${d.totalInvested},${d.totalInterest}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `compound_interest_${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            this.showToast('CSVファイルをエクスポートしました');
+        }
+
+        resetSkill() {
+            document.getElementById('skillRate').value = 1.0;
+            document.getElementById('skillDays').value = 365;
+            document.getElementById('initialSkill').value = 100;
+            document.getElementById('skillUnit').value = 'ポイント';
+            document.getElementById('skillRateValue').textContent = '1.0%';
+            document.getElementById('skillDaysValue').textContent = '365日';
+
+            document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-preset="daily1"]').classList.add('active');
+
+            this.calculateSkillGrowth();
+            this.showToast('リセットしました');
+        }
+
+        resetAsset() {
+            document.getElementById('principal').value = 1000000;
+            document.getElementById('monthly').value = 30000;
+            document.getElementById('assetRate').value = 5;
+            document.getElementById('assetYears').value = 20;
+            document.getElementById('frequency').value = 12;
+            document.getElementById('assetRateValue').textContent = '5%';
+            document.getElementById('assetYearsValue').textContent = '20年';
+
+            this.calculateAssetGrowth();
+            this.showToast('リセットしました');
+        }
+
+        showToast(message, duration = 3000) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), duration);
+        }
+    }
+
+    // Chart.js CDN読み込み
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+    script.onload = () => new CompoundGrowthApp();
+    script.onerror = () => new CompoundGrowthApp();
+    document.head.appendChild(script);
+  </script>
+</body>
+
+</html>
