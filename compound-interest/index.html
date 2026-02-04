@@ -1934,16 +1934,30 @@
 
         setupConceptToggle() {
             document.querySelectorAll('.concept-card, .example-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const detail = card.querySelector('.concept-card-detail, .example-card-detail');
-                    if (detail) {
-                        if (detail.style.display === 'none') {
-                            detail.style.display = 'block';
-                        } else {
-                            detail.style.display = 'none';
-                        }
-                    }
-                });
+                const detail = card.querySelector('.concept-card-detail, .example-card-detail');
+                if (detail) {
+                    detail.style.maxHeight = '0';
+                    detail.style.overflow = 'hidden';
+                    detail.style.opacity = '0';
+                    detail.style.transition = 'max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease, padding 0.3s ease';
+                    detail.style.display = 'block';
+                    detail.style.marginTop = '0';
+                    detail.style.paddingTop = '0';
+
+                    card.addEventListener('mouseenter', () => {
+                        detail.style.maxHeight = '300px';
+                        detail.style.opacity = '1';
+                        detail.style.marginTop = '15px';
+                        detail.style.paddingTop = '15px';
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        detail.style.maxHeight = '0';
+                        detail.style.opacity = '0';
+                        detail.style.marginTop = '0';
+                        detail.style.paddingTop = '0';
+                    });
+                }
             });
         }
 
@@ -2045,7 +2059,11 @@
 
             // Animate values
             this.animateValue('finalSkill', this.formatNumber(finalSkill));
-            this.animateValue('growthMultiple', growthMultiple.toFixed(1) + 'x');
+            if (growthMultiple < 1) {
+                this.animateValue('growthMultiple', (growthMultiple * 100).toFixed(1) + '%に減少');
+            } else {
+                this.animateValue('growthMultiple', growthMultiple.toFixed(1) + 'x');
+            }
             this.animateValue('totalGrowth', (totalGrowth >= 0 ? '+' : '') + this.formatNumber(totalGrowth));
             document.getElementById('doublingTime').textContent = doublingTime === '∞' ? '∞' : doublingTime + '日';
 
