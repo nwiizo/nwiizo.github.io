@@ -1634,6 +1634,92 @@
         </div>
       </div>
 
+      <!-- Smartphone Section -->
+      <div class="valley-section" id="smartphoneSection" style="border-color: var(--danger-color); cursor: pointer;">
+        <div class="valley-title" style="color: var(--danger-color); display: flex; justify-content: space-between; align-items: center;">
+          <span><span>📵</span> nwiizoが思う習慣の最大の敵：スマートフォン</span>
+          <span id="smartphoneToggleIcon" style="font-size: 20px; transition: transform 0.3s ease;">▼</span>
+        </div>
+        <div id="smartphoneContent" style="color: var(--text-secondary); line-height: 1.8; display: none;">
+          <p style="margin-bottom: 15px;">
+            <strong style="color: var(--text-primary);">正直に言う。スマホが一番の敵だ。</strong><br>
+            どれだけ完璧な習慣を設計しても、スマホが全部台無しにする。自分の意志が弱いんじゃない。このデバイスは、人間が抗えないように作られている。
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px;">
+            <div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border-left: 3px solid var(--danger-color);">
+              <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">😰 気づいたらこうなってる</div>
+              <ul style="font-size: 13px; padding-left: 18px; margin: 0;">
+                <li>「ちょっとだけ」が30分になってる</li>
+                <li>やろうと思ってたことを忘れてる</li>
+                <li>気づいたら無意味にスクロールしてる</li>
+                <li>机に置いてあるだけで気になる</li>
+                <li>通知音で集中が一瞬で吹き飛ぶ</li>
+              </ul>
+            </div>
+            <div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border-left: 3px solid var(--warning-color);">
+              <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">🎰 これ、設計されてる</div>
+              <ul style="font-size: 13px; padding-left: 18px; margin: 0;">
+                <li>「いいね」はスロットマシンと同じ仕組み</li>
+                <li>無限スクロールに終わりはない</li>
+                <li>通知音は脳の警報装置を直撃する</li>
+                <li>「たまに面白い」が一番やめられない</li>
+                <li>優秀な心理学者がハマる設計を研究してる</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border-left: 3px solid var(--purple-color); margin-bottom: 15px;">
+            <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">💀 複利が死ぬ瞬間</div>
+            <ul style="font-size: 13px; padding-left: 18px; margin: 0;">
+              <li>朝起きてスマホを見た瞬間、その日の集中力の半分は消える</li>
+              <li>23分かけて集中しても、通知1つで振り出しに戻る</li>
+              <li>「スマホ見たい」を我慢するだけで脳のエネルギーを使ってる</li>
+              <li>夜スマホで睡眠が壊れると、翌日の習慣は絶対続かない</li>
+            </ul>
+          </div>
+
+          <div style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(52, 152, 219, 0.1)); padding: 15px; border-radius: 8px;">
+            <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 10px;">🛡️ 自分を守る方法（実際にやってること）</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; font-size: 13px;">
+              <div>
+                <strong>物理的に離す</strong>
+                <ul style="padding-left: 18px; margin: 5px 0 0 0;">
+                  <li>作業中はスマホを別の部屋に置く</li>
+                  <li>充電器は玄関に置く</li>
+                  <li>目覚ましは物理的な時計を使う</li>
+                </ul>
+              </div>
+              <div>
+                <strong>通知を殺す</strong>
+                <ul style="padding-left: 18px; margin: 5px 0 0 0;">
+                  <li>通知は電話だけ許可</li>
+                  <li>SNSアプリはホーム画面から消す</li>
+                  <li>集中時は機内モード</li>
+                </ul>
+              </div>
+              <div>
+                <strong>時間を決める</strong>
+                <ul style="padding-left: 18px; margin: 5px 0 0 0;">
+                  <li>起きて1時間は絶対触らない</li>
+                  <li>寝る1時間前から見ない</li>
+                  <li>SNSは1日30分まで</li>
+                </ul>
+              </div>
+              <div>
+                <strong>代わりの行動を用意</strong>
+                <ul style="padding-left: 18px; margin: 5px 0 0 0;">
+                  <li>暇になったら本を開く</li>
+                  <li>電車では窓の外を見る</li>
+                  <li>手持ち無沙汰なら深呼吸する</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Insights -->
       <div class="insight-section">
         <div class="insight-title">
@@ -1942,6 +2028,7 @@
             this.setupThemeToggle();
             this.setupComparison();
             this.setupLawCards();
+            this.setupSmartphoneSection();
             this.setupShareButtons();
             this.setupTimemachineDismiss();
             this.setupConceptToggle();
@@ -2066,6 +2153,23 @@
                     card.classList.toggle('expanded');
                 });
             });
+        }
+
+        setupSmartphoneSection() {
+            const section = document.getElementById('smartphoneSection');
+            const content = document.getElementById('smartphoneContent');
+            const icon = document.getElementById('smartphoneToggleIcon');
+            if (section && content) {
+                section.addEventListener('click', () => {
+                    if (content.style.display === 'none') {
+                        content.style.display = 'block';
+                        if (icon) icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        content.style.display = 'none';
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
         }
 
         setupTimemachineDismiss() {
