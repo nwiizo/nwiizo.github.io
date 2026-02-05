@@ -1646,6 +1646,89 @@
         </ul>
       </div>
 
+      <!-- Calendar -->
+      <div class="concept-section">
+        <div class="concept-title">
+          <span>📅</span> Googleカレンダーで習慣を管理
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+          毎日の習慣をGoogleカレンダーに登録して、複利の力を実感しましょう。
+        </p>
+
+        <div class="input-section" style="margin-bottom: 20px;">
+          <div class="input-group">
+            <div class="input-group-title">
+              <span>✏️</span> 予定の内容
+            </div>
+            <div class="input-field">
+              <label for="calendarTitle">予定のタイトル <span style="color: var(--text-secondary); font-weight: 400; font-size: 11px; opacity: 0.6;">(自分の習慣に合わせて変更可)</span></label>
+              <input type="text" id="calendarTitle" value="1%成長する時間" placeholder="例: 読書、運動、学習">
+            </div>
+            <div class="input-field">
+              <label for="calendarDescription">説明（任意）</label>
+              <textarea id="calendarDescription" rows="8" style="width: 100%; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 14px; font-family: inherit; background: var(--card-bg); color: var(--text-primary); resize: vertical;"></textarea>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-title">
+              <span>⏰</span> 時間設定
+            </div>
+            <div class="input-field">
+              <label for="calendarStartTime">開始時刻</label>
+              <input type="time" id="calendarStartTime" value="07:00">
+            </div>
+            <div class="input-field">
+              <label for="calendarDuration">予定の長さ</label>
+              <select id="calendarDuration">
+                <option value="15">15分</option>
+                <option value="30" selected>30分</option>
+                <option value="45">45分</option>
+                <option value="60">1時間</option>
+                <option value="90">1時間30分</option>
+                <option value="120">2時間</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-title">
+              <span>📆</span> 期間設定
+            </div>
+            <div class="input-field">
+              <label for="calendarStartDate">開始日</label>
+              <input type="date" id="calendarStartDate">
+            </div>
+            <div class="input-field">
+              <label for="calendarEndDate">終了日</label>
+              <input type="date" id="calendarEndDate">
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--light-bg); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span>🔗</span>
+            <span style="font-weight: 600; font-size: 14px;">生成されたURL</span>
+          </div>
+          <div id="calendarUrlDisplay" style="word-break: break-all; font-size: 12px; color: var(--text-secondary); max-height: 60px; overflow-y: auto;">
+            URLがここに表示されます
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn btn-primary" id="generateCalendarUrl" style="flex: 1; min-width: 150px;">
+            <span>🔗</span> URLを生成
+          </button>
+          <button class="btn btn-secondary" id="openCalendarUrl" style="flex: 1; min-width: 150px;">
+            <span>📅</span> カレンダーで開く
+          </button>
+          <button class="btn btn-outline" id="copyCalendarUrl" style="flex: 1; min-width: 150px;">
+            <span>📋</span> コピー
+          </button>
+        </div>
+      </div>
+
       <!-- Share -->
       <div class="share-section">
         <button class="share-btn" id="shareTwitterBtn">
@@ -1796,6 +1879,7 @@
         </button>
       </div>
     </div>
+
   </div>
 
   <div class="toast" id="toast"></div>
@@ -1815,6 +1899,20 @@
                 { text: "環境はしばしば意志力に勝る。", source: "James Clear" },
                 { text: "変わりたければ、なりたい自分を演じろ。", source: "Atomic Habits" }
             ];
+            this.motivationalMessages = [
+                "今日の1%が、1年後の37倍を作る。さあ、始めよう。",
+                "昨日より1%だけ良くなれ。それだけでいい。",
+                "完璧を目指すな。継続を目指せ。",
+                "今日サボれば、明日の自分が苦しむ。",
+                "小さな一歩でも、踏み出した者だけが前に進める。",
+                "才能は言い訳にならない。習慣がすべてを決める。",
+                "やる気がなくても、やれ。習慣とはそういうものだ。",
+                "失敗しても、また始めればいい。諦めなければ負けじゃない。",
+                "今この瞬間が、人生で一番若い。始めるなら今だ。",
+                "成長は見えない。でも確実に起きている。信じて続けろ。",
+                "プロとアマの差は、やる気がない日にもやるかどうか。",
+                "1年後、今日を振り返って感謝する自分になれ。"
+            ];
             this.currentQuoteIndex = 0;
             this.state = {
                 currentTab: 'skill',
@@ -1833,6 +1931,7 @@
             this.setupTabListeners();
             this.setupSkillListeners();
             this.setupAssetListeners();
+            this.setupCalendarListeners();
             this.setupQuoteRotation();
             this.setupThemeToggle();
             this.setupComparison();
@@ -2298,6 +2397,108 @@
             document.getElementById('copyAssetResultBtn').addEventListener('click', () => this.copyAssetResults());
             document.getElementById('resetAssetBtn').addEventListener('click', () => this.resetAsset());
             document.getElementById('exportCsvBtn').addEventListener('click', () => this.exportCSV());
+        }
+
+        setupCalendarListeners() {
+            // Set default dates
+            const today = new Date();
+            const endDate = new Date(today);
+            endDate.setFullYear(endDate.getFullYear() + 1);
+
+            document.getElementById('calendarStartDate').value = today.toISOString().split('T')[0];
+            document.getElementById('calendarEndDate').value = endDate.toISOString().split('T')[0];
+
+            // Set random motivational message
+            this.updateCalendarDescription();
+
+            document.getElementById('generateCalendarUrl').addEventListener('click', () => this.generateCalendarUrl());
+            document.getElementById('openCalendarUrl').addEventListener('click', () => this.openCalendarUrl());
+            document.getElementById('copyCalendarUrl').addEventListener('click', () => this.copyCalendarUrl());
+        }
+
+        updateCalendarDescription() {
+            const randomMessage = this.motivationalMessages[Math.floor(Math.random() * this.motivationalMessages.length)];
+            const description = `【${randomMessage}】
+
+【限界的練習を続けるための10+1のルール】
+• いつも自分の能力より少し難しいことに挑戦し続ける
+• 「これで十分」という考えを持たない
+• 個人での集中練習時間を確保する
+• 自己の弱点を特定し、克服するための練習を継続的に行う
+• 練習を単なる「楽しみ」として捉えない
+• 集中力の限界を認識し、それを超えたら休憩を取る
+• 停滞期には練習方法の見直しを行う
+• フィードバックループを短くし、即座に結果や評価を得る
+• 一日のスケジュールを明確に区分けする
+• 才能は質の高い練習の積み重ねによって形成される
+• 過去に学んだことを手放す勇気を持つ（アンラーン）
+
+📊 複利計算ツール: https://nwiizo.github.io/compound-interest/`;
+            document.getElementById('calendarDescription').value = description;
+        }
+
+        generateCalendarUrl() {
+            const title = document.getElementById('calendarTitle').value || '1%成長する時間';
+            const description = document.getElementById('calendarDescription').value || '';
+            const startTime = document.getElementById('calendarStartTime').value;
+            const duration = parseInt(document.getElementById('calendarDuration').value);
+            const startDate = document.getElementById('calendarStartDate').value;
+            const endDate = document.getElementById('calendarEndDate').value;
+
+            if (!startDate || !endDate) {
+                this.showToast('開始日と終了日を入力してください');
+                return null;
+            }
+
+            // Parse start time
+            const [hours, minutes] = startTime.split(':').map(Number);
+
+            // Create start datetime
+            const start = new Date(startDate);
+            start.setHours(hours, minutes, 0, 0);
+
+            // Create end datetime
+            const end = new Date(start);
+            end.setMinutes(end.getMinutes() + duration);
+
+            // Format dates for Google Calendar (YYYYMMDDTHHmmss)
+            const formatDate = (d) => {
+                return d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+            };
+
+            // Format end date for recurrence (YYYYMMDD)
+            const recurrenceEnd = endDate.replace(/-/g, '');
+
+            // Build URL
+            const params = new URLSearchParams({
+                action: 'TEMPLATE',
+                text: title,
+                dates: `${formatDate(start)}/${formatDate(end)}`,
+                details: description,
+                recur: `RRULE:FREQ=DAILY;UNTIL=${recurrenceEnd}T235959Z`
+            });
+
+            const url = `https://calendar.google.com/calendar/render?${params.toString()}`;
+
+            document.getElementById('calendarUrlDisplay').textContent = url;
+            this.state.calendarUrl = url;
+            this.showToast('URLを生成しました');
+
+            return url;
+        }
+
+        openCalendarUrl() {
+            const url = this.state.calendarUrl || this.generateCalendarUrl();
+            if (url) {
+                window.open(url, '_blank');
+            }
+        }
+
+        copyCalendarUrl() {
+            const url = this.state.calendarUrl || this.generateCalendarUrl();
+            if (url) {
+                this.copyToClipboard(url);
+            }
         }
 
         calculateAssetGrowth() {
