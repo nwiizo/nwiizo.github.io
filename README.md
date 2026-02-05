@@ -70,10 +70,10 @@ Between writing code, consulting tech teams, and devouring books across all genr
 </div>
 
 ### General Inquiries
-Please send an email to nwiizo at **syu.m.5151@gmail.com** or DM me at [**@nwiizo**](https://x.com/nwiizo)
+Please send an email to nwiizo at **syu.m.5151@gmail.com** or DM me at [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
 
 ### Work & Interview Requests
-For business opportunities and media interviews, please contact me via email at **syu.m.5151@gmail.com** or send a DM to [**@nwiizo**](https://x.com/nwiizo)
+For business opportunities and media interviews, please contact me via email at **syu.m.5151@gmail.com** or send a DM to [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
 
 ### Review Copies & Books
 I'm an avid book lover and would gratefully receive review copies! I enjoy reading books across all genres. Please feel free to send them my way.
