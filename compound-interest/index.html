@@ -959,6 +959,17 @@
         display: block;
     }
 
+    .law-toggle {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-top: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .law-card.expanded .law-toggle {
+        transform: rotate(45deg);
+    }
+
     /* Insight Section */
     .insight-section {
         background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(155, 89, 182, 0.05));
@@ -1591,6 +1602,7 @@
             <div class="law-number">1</div>
             <div class="law-title">明確にする</div>
             <div class="law-desc">Make it Obvious</div>
+            <div class="law-toggle">＋</div>
             <div class="law-detail">
               <strong>実践方法:</strong><br>
               • 実行意図: 「いつ」「どこで」「何を」するか明確に<br>
@@ -1602,6 +1614,7 @@
             <div class="law-number">2</div>
             <div class="law-title">魅力的にする</div>
             <div class="law-desc">Make it Attractive</div>
+            <div class="law-toggle">＋</div>
             <div class="law-detail">
               <strong>実践方法:</strong><br>
               • 誘惑の抱き合わせ: やりたいことと組み合わせる<br>
@@ -1613,6 +1626,7 @@
             <div class="law-number">3</div>
             <div class="law-title">簡単にする</div>
             <div class="law-desc">Make it Easy</div>
+            <div class="law-toggle">＋</div>
             <div class="law-detail">
               <strong>実践方法:</strong><br>
               • 2分ルール: まずは2分だけ始める<br>
@@ -1624,6 +1638,7 @@
             <div class="law-number">4</div>
             <div class="law-title">満足できるものに</div>
             <div class="law-desc">Make it Satisfying</div>
+            <div class="law-toggle">＋</div>
             <div class="law-detail">
               <strong>実践方法:</strong><br>
               • 即座の報酬: 完了したら小さなご褒美を<br>
@@ -1637,7 +1652,7 @@
       <!-- Smartphone Section -->
       <div class="valley-section" id="smartphoneSection" style="border-color: var(--danger-color); cursor: pointer;">
         <div class="valley-title" style="color: var(--danger-color); display: flex; justify-content: space-between; align-items: center;">
-          <span><span>📵</span> nwiizoが思う習慣の最大の敵：スマートフォン</span>
+          <span><span>📵</span> nwiizoが思う習慣の最大の敵</span>
           <span id="smartphoneToggleIcon" style="font-size: 20px; transition: transform 0.3s ease;">▼</span>
         </div>
         <div id="smartphoneContent" style="color: var(--text-secondary); line-height: 1.8; display: none;">
@@ -1704,7 +1719,7 @@
                 <ul style="padding-left: 18px; margin: 5px 0 0 0;">
                   <li>起きて1時間は絶対触らない</li>
                   <li>寝る1時間前から見ない</li>
-                  <li>SNSはアプリの使用時間を30分に設定</li>
+                  <li>SNSはアプリの使用時間を30分に設定<br><span style="font-size: 11px; opacity: 0.7;">※スマホ側で設定ができる</span></li>
                 </ul>
               </div>
               <div>
