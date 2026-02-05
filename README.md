@@ -50,8 +50,8 @@ Between writing code, consulting tech teams, and devouring books across all genr
 ## 🔗 Connect with me
 
 <p>
-  <a href="https://twitter.com/nwiizo">
-    <img src="https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white" />
+  <a href="https://x.com/nwiizo">
+    <img src="https://img.shields.io/badge/-X-000000?style=flat-square&logo=x&logoColor=white" />
   </a>
   <a href="https://github.com/nwiizo">
     <img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&logoColor=white" />
@@ -59,7 +59,7 @@ Between writing code, consulting tech teams, and devouring books across all genr
   <a href="https://speakerdeck.com/nwiizo">
     <img src="https://img.shields.io/badge/-SpeakerDeck-009287?style=flat-square&logo=speaker-deck&logoColor=white" />
   </a>
-  <a href="http://syu-m-5151.hatenablog.com/">
+  <a href="https://syu-m-5151.hatenablog.com/">
     <img src="https://img.shields.io/badge/-Blog-2F3437?style=flat-square&logo=blogger&logoColor=white" />
   </a>
 </p>
@@ -76,8 +76,4 @@ Please send an email to nwiizo at **syu.m.5151@gmail.com** or DM me at [**@nwiiz
 For business opportunities and media interviews, please contact me via email at **syu.m.5151@gmail.com** or send a DM to [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
 
 ### Review Copies & Books
-I'm an avid book lover and would gratefully receive review copies! I enjoy reading books across all genres. Please feel free to send them my way.
-
-
-
-
+I'm an avid book lover and would gratefully receive review copies! I enjoy reading books across all genres. Please send a DM to [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
