@@ -1703,6 +1703,12 @@
               <label for="calendarEndDate">終了日</label>
               <input type="date" id="calendarEndDate">
             </div>
+            <div class="input-field" style="margin-top: 15px;">
+              <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <input type="checkbox" id="excludeWeekends" style="width: 18px; height: 18px; cursor: pointer;">
+                <span>土日を除く（平日のみ）</span>
+              </label>
+            </div>
           </div>
         </div>
 
@@ -2469,13 +2475,19 @@
             // Format end date for recurrence (YYYYMMDD)
             const recurrenceEnd = endDate.replace(/-/g, '');
 
+            // Check if weekends should be excluded
+            const excludeWeekends = document.getElementById('excludeWeekends').checked;
+            const recurrence = excludeWeekends
+                ? `RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;UNTIL=${recurrenceEnd}T235959Z`
+                : `RRULE:FREQ=DAILY;UNTIL=${recurrenceEnd}T235959Z`;
+
             // Build URL
             const params = new URLSearchParams({
                 action: 'TEMPLATE',
                 text: title,
                 dates: `${formatDate(start)}/${formatDate(end)}`,
                 details: description,
-                recur: `RRULE:FREQ=DAILY;UNTIL=${recurrenceEnd}T235959Z`
+                recur: recurrence
             });
 
             const url = `https://calendar.google.com/calendar/render?${params.toString()}`;
