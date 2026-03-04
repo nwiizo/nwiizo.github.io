@@ -77,3 +77,6 @@ For business opportunities and media interviews, please contact me via email at 
 
 ### Review Copies & Books
 I'm an avid book lover and would gratefully receive review copies! I enjoy reading books across all genres. Please send a DM to [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
+
+### Photo Policy
+If you post any photos of me on social media, please cover my face with an icon or sticker so that I am not identifiable. Thank you for your cooperation.
