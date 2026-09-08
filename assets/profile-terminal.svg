@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="252" viewBox="0 0 720 252" role="img" aria-labelledby="title description">
+  <title id="title">nwiizo's interests, one command at a time</title>
+  <desc id="description">A terminal types out Rust, Go, infrastructure, books, and martial arts, then adds: just one more chapter.</desc>
+
+  <defs>
+    <clipPath id="command-clip">
+      <rect class="command-mask" y="-22" width="228" height="30" />
+    </clipPath>
+    <clipPath id="chapter-clip">
+      <rect class="chapter-mask" y="-22" width="336" height="30" />
+    </clipPath>
+  </defs>
+
+  <style>
+    text { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+    /* The complete card is the default for static renderers and reduced motion. */
+    @media (prefers-reduced-motion: no-preference) {
+      .command-mask { animation: type-command 1s steps(19, end) .2s backwards; }
+      .interests { animation: appear .25s ease-out 1.25s backwards; }
+      .hobbies { animation: appear .25s ease-out 1.6s backwards; }
+      .chapter-mask { animation: type-chapter 1.3s steps(29, end) 2s backwards; }
+      .cursor { animation: blink .8s step-end 3.3s 2 backwards; }
+    }
+
+    @keyframes type-command {
+      from { width: 0; }
+      to { width: 228px; }
+    }
+    @keyframes type-chapter {
+      from { width: 0; }
+      to { width: 336px; }
+    }
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+  </style>
+
+  <rect x="1" y="1" width="718" height="250" rx="14" fill="#101820" stroke="#34434f" stroke-width="2" />
+  <path d="M2 45H718" stroke="#34434f" />
+  <g aria-hidden="true">
+    <circle cx="25" cy="24" r="5" fill="#ff7b72" />
+    <circle cx="43" cy="24" r="5" fill="#e9b65e" />
+    <circle cx="61" cy="24" r="5" fill="#70d6b0" />
+  </g>
+  <text x="360" y="29" text-anchor="middle" font-size="13" fill="#a9bac7">nwiizo@home: ~</text>
+
+  <g transform="translate(28 86)">
+    <text clip-path="url(#command-clip)" font-size="19" fill="#70d6b0" textLength="216" lengthAdjust="spacingAndGlyphs">$ cat interests.txt</text>
+  </g>
+  <text class="interests" x="28" y="127" font-size="24" font-weight="600" fill="#edf3f8">Rust / Go / infrastructure</text>
+  <text class="hobbies" x="28" y="164" font-size="21" fill="#b5c7d4">Books / martial arts / curiosity</text>
+
+  <path d="M28 189H692" stroke="#34434f" />
+  <g transform="translate(28 224)">
+    <text clip-path="url(#chapter-clip)" font-size="19" fill="#e9b65e" textLength="330" lengthAdjust="spacingAndGlyphs">$ echo "just one more chapter"</text>
+    <rect class="cursor" x="342" y="-17" width="10" height="21" rx="1" fill="#e9b65e" />
+  </g>
+</svg>

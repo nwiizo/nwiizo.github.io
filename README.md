@@ -1,41 +1,35 @@
 <div align="center">
-<a href="https://github.com/nwiizo">
-<img src="https://github.com/nwiizo.png" width="200" style="transition: all 0.5s ease-in-out;" 
-onmouseover="
-this.style.transition='all 15s cubic-bezier(0.34, 1.56, 0.64, 1)';
-this.style.transform='scale(1.1) rotate(0deg)';
-this.timeout1 = setTimeout(() => { 
-    if(this.matches(':hover')) this.style.transform='scale(5) rotate(360deg)';
-}, 2000);
-this.timeout2 = setTimeout(() => {
-    if(this.matches(':hover')) this.style.transform='scale(20) rotate(1080deg)';
-}, 5000);
-this.timeout3 = setTimeout(() => {
-    if(this.matches(':hover')) this.style.transform='scale(100) rotate(3600deg) skew(25deg)';
-}, 8000);
-this.timeout4 = setTimeout(() => {
-    if(this.matches(':hover')) this.style.transform='scale(200) rotate(7200deg) skew(45deg)';
-}, 12000);"
-onmouseout="
-clearTimeout(this.timeout1);
-clearTimeout(this.timeout2);
-clearTimeout(this.timeout3);
-clearTimeout(this.timeout4);
-this.style.transition='all 0.5s ease-in-out';
-this.style.transform='scale(1) rotate(0deg) skew(0deg)';" />
-</a>
-  
+  <a href="https://github.com/nwiizo">
+    <img src="https://github.com/nwiizo.png" width="160" alt="nwiizo's profile icon" />
+  </a>
+
   <h3>nwiizo a.k.a. Shuya Motouchi</h3>
+
+  <img src="assets/profile-terminal.svg" width="720" alt="A terminal typing out my interests: Rust, Go, infrastructure, books, and martial arts. Just one more chapter." />
 </div>
+
+<details>
+<summary>🦀 What happens when I try to make weekend plans?</summary>
+
+```text
+$ cargo run --bin weekend
+error: cannot borrow `weekend` as mutable more than once
+  first borrow:  books
+  second borrow: side projects
+  third borrow:  martial arts
+
+help: consider adding another day to the week
+```
+
+</details>
 
 ## 👨‍💻 About Me
 
-I work as a Software Developer at [@3-shake Inc.](https://3-shake.com/) while serving as a Technical Advisor for several companies. I also take on freelance programming work - my expertise lies in backend and infrastructure, though I can fumble my way through frontend when absolutely necessary. If my blog "じゃあ、おうちで学べる" has ever saved your day (or your deadline), feel free to reach out!
+I'm a software developer at [3-shake Inc.](https://3-shake.com/) and a technical advisor to several companies. I also take on freelance programming work, focusing on backend development and infrastructure, with occasional frontend work.
 
-I've also got this quirky hobby as a "Gravure Digger" - just one of the many interesting paths I've explored in tech over the years! 
+I write the Japanese tech blog [じゃあ、おうちで学べる](https://syu-m-5151.hatenablog.com/) and speak at tech conferences. Alongside my translation work, I've also written a book of my own. If my blog has helped you solve a problem or meet a deadline, I'd love to hear about it.
 
-Between writing code, consulting tech teams, and devouring books across all genres, I somehow find time to practice martial arts too. You might spot me speaking at tech conferences, translating documentation, or sharing stories on my blog. It's definitely not your conventional tech career path, but I'm loving every moment of it! ✨
-
+Outside of tech, I read books across genres and practice martial arts. I'm also a self-described "Gravure Digger."
 
 ## 🛠 Tech Stack
 
@@ -47,7 +41,7 @@ Between writing code, consulting tech teams, and devouring books across all genr
   <img src="https://img.shields.io/badge/-Ansible-EE0000?style=flat-square&logo=ansible&logoColor=white" />
 </p>
 
-## 🔗 Connect with me
+## 🔗 Connect with Me
 
 <p>
   <a href="https://x.com/nwiizo">
@@ -69,14 +63,14 @@ Between writing code, consulting tech teams, and devouring books across all genr
   <a href="https://bsky.app/profile/nwiizo.bsky.social">🌐 Bluesky Social</a>
 </div>
 
-### General Inquiries
-Please send an email to nwiizo at **syu.m.5151@gmail.com** or DM me at [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
+### Get in Touch
 
-### Work & Interview Requests
-For business opportunities and media interviews, please contact me via email at **syu.m.5151@gmail.com** or send a DM to [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
+For general questions, work opportunities, or media interviews, email **syu.m.5151@gmail.com** or send a DM to [**@nwiizo**](https://x.com/nwiizo). **A DM on X is the fastest way to reach me.**
 
 ### Review Copies & Books
-I'm an avid book lover and would gratefully receive review copies! I enjoy reading books across all genres. Please send a DM to [**@nwiizo**](https://x.com/nwiizo). **DM is the fastest way to reach me.**
+
+I welcome review copies of books across genres. Please DM me on X to arrange delivery.
 
 ### Photo Policy
-If you post any photos of me on social media, please cover my face with an icon or sticker so that I am not identifiable. Thank you for your cooperation.
+
+When sharing photos of me on social media, please cover my face with an icon or sticker so I can't be identified. Thank you for respecting my privacy.
