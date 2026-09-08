@@ -1,76 +1,54 @@
 <div align="center">
-  <a href="https://github.com/nwiizo">
-    <img src="https://github.com/nwiizo.png" width="160" alt="nwiizo's profile icon" />
+  <a href="extras/README.md">
+    <img src="https://github.com/nwiizo.png" width="72" height="72" alt="nwiizo's profile icon" />
   </a>
 
-  <h3>nwiizo a.k.a. Shuya Motouchi</h3>
+  <h1>nwiizo</h1>
+  <p>Shuya Motouchi</p>
+  <p><samp>Software developer · Technical advisor · Author</samp></p>
 
-  <img src="assets/profile-terminal.svg" width="720" alt="A terminal typing out my interests: Rust, Go, infrastructure, books, and martial arts. Just one more chapter." />
+  <p>
+    <strong><a href="#contact">Discuss a project</a></strong> &nbsp;·&nbsp;
+    <a href="https://syu-m-5151.hatenablog.com/">Blog</a> &nbsp;·&nbsp;
+    <a href="https://speakerdeck.com/nwiizo">Talks</a>
+  </p>
 </div>
 
-<details>
-<summary>🦀 What happens when I try to make weekend plans?</summary>
+I'm a software developer at [3-shake Inc.](https://3-shake.com/) and a technical advisor to several companies. My work centers on backend development and infrastructure, and I also take on freelance programming projects. I enjoy writing Rust.
 
-```text
-$ cargo run --bin weekend
-error: cannot borrow `weekend` as mutable more than once
-  first borrow:  books
-  second borrow: side projects
-  third borrow:  martial arts
+## How I Can Help
 
-help: consider adding another day to the week
-```
+- **Development** — Hands-on backend and infrastructure work, with occasional frontend work.
+- **Technical advisory** — Help thinking through technical decisions and implementation approaches.
+- **Writing & speaking** — Technical writing, translation, conference talks, and media interviews.
 
-</details>
+## Writing & Speaking
 
-## 👨‍💻 About Me
+Alongside my translation work, I've written a book of my own. I also write the Japanese tech blog [じゃあ、おうちで学べる](https://syu-m-5151.hatenablog.com/) and speak at tech conferences.
 
-I'm a software developer at [3-shake Inc.](https://3-shake.com/) and a technical advisor to several companies. I also take on freelance programming work, focusing on backend development and infrastructure, with occasional frontend work.
+My [articles](https://syu-m-5151.hatenablog.com/) and [talk slides](https://speakerdeck.com/nwiizo) offer a closer look at how I approach and explain technical topics.
 
-I write the Japanese tech blog [じゃあ、おうちで学べる](https://syu-m-5151.hatenablog.com/) and speak at tech conferences. Alongside my translation work, I've also written a book of my own. If my blog has helped you solve a problem or meet a deadline, I'd love to hear about it.
+## Contact
+
+A short note about what you're working on and where you could use help is enough to start. If you have a timeline in mind, feel free to include it.
+
+**[Send a DM on X](https://x.com/nwiizo)** &nbsp;·&nbsp; [syu.m.5151@gmail.com](mailto:syu.m.5151@gmail.com?subject=Project%20inquiry)
+
+A DM on X is the fastest way to reach me. General questions and media interview requests are welcome, too.
+
+## Beyond Work
 
 Outside of tech, I read books across genres and practice martial arts. I'm also a self-described "Gravure Digger."
-
-## 🛠 Tech Stack
-
-<p>
-  <img src="https://img.shields.io/badge/-Rust-000000?style=flat-square&logo=rust&logoColor=white" />
-  <img src="https://img.shields.io/badge/-Golang-00ADD8?style=flat-square&logo=go&logoColor=white" />
-  <img src="https://img.shields.io/badge/-Shell_Script-121011?style=flat-square&logo=gnu-bash&logoColor=white" />
-  <img src="https://img.shields.io/badge/-Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white" />
-  <img src="https://img.shields.io/badge/-Ansible-EE0000?style=flat-square&logo=ansible&logoColor=white" />
-</p>
-
-## 🔗 Connect with Me
-
-<p>
-  <a href="https://x.com/nwiizo">
-    <img src="https://img.shields.io/badge/-X-000000?style=flat-square&logo=x&logoColor=white" />
-  </a>
-  <a href="https://github.com/nwiizo">
-    <img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&logoColor=white" />
-  </a>
-  <a href="https://speakerdeck.com/nwiizo">
-    <img src="https://img.shields.io/badge/-SpeakerDeck-009287?style=flat-square&logo=speaker-deck&logoColor=white" />
-  </a>
-  <a href="https://syu-m-5151.hatenablog.com/">
-    <img src="https://img.shields.io/badge/-Blog-2F3437?style=flat-square&logo=blogger&logoColor=white" />
-  </a>
-</p>
-
-<div align="left">
-  <a href="https://www.amazon.co.jp/registry/wishlist/1R5ZE9A1TGDZJ">🎁 Amazon Wishlist</a> | 
-  <a href="https://bsky.app/profile/nwiizo.bsky.social">🌐 Bluesky Social</a>
-</div>
-
-### Get in Touch
-
-For general questions, work opportunities, or media interviews, email **syu.m.5151@gmail.com** or send a DM to [**@nwiizo**](https://x.com/nwiizo). **A DM on X is the fastest way to reach me.**
-
-### Review Copies & Books
 
 I welcome review copies of books across genres. Please DM me on X to arrange delivery.
 
 ### Photo Policy
 
 When sharing photos of me on social media, please cover my face with an icon or sticker so I can't be identified. Thank you for respecting my privacy.
+
+<br />
+
+<p align="center">
+  <a href="https://github.com/nwiizo">GitHub</a> &nbsp;·&nbsp;
+  <a href="https://www.amazon.co.jp/registry/wishlist/1R5ZE9A1TGDZJ">Amazon Wishlist</a>
+</p>
